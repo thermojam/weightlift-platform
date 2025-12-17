@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <nav className="flex h-20 items-center justify-between">
                     <div>
-                        <img src="/logo.svg" alt="FitApp Logo" className="h-16 w-auto" />
+                        <img src="/logo.svg" alt="FitApp Logo" className="h-12 w-auto" />
                     </div>
 
                     <div className="hidden md:flex items-center gap-8 lg:gap-12">
