@@ -1,21 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft } from 'react-icons/fa';
+import { logoutUser } from '@/store/actions/authActions';
+import { isAdminOrModerator, isAdmin } from '@/utils/permissions';
+import type { RootState } from '@/store';
 
 export const Navbar: React.FC = () => {
+    const user = useSelector((state: RootState) => state.auth.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logoutUser() as any);
+        navigate('/auth/login');
+    };
 
     const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
         `relative text-slate-100 py-2 transition-colors duration-300 hover:text-slate-300 ` +
         `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-slate-300 after:transition-transform after:duration-300 ` +
         (isActive ? 'text-slate-300 after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100');
 
+    const canManagePosts = isAdminOrModerator(user?.role);
+    const canManageUsers = isAdmin(user?.role);
 
     return (
         <header className="header-gradient shadow-lg">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <nav className="flex h-20 items-center justify-between">
-                    <div>
-                        <img src="/logo.svg" alt="FitApp Logo" className="h-12 w-auto" />
-                    </div>
+                    <NavLink to="/" className="flex-shrink-0" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
+                        <img src="/logo.svg" alt="Logo" className="h-12 w-auto" />
+                    </NavLink>
 
                     <div className="hidden md:flex items-center gap-8 lg:gap-12">
                         <NavLink to="/" className={navLinkClasses}>Главная</NavLink>
@@ -23,6 +38,38 @@ export const Navbar: React.FC = () => {
                         <NavLink to="/videos" className={navLinkClasses}>Видео</NavLink>
                         <NavLink to="/project" className={navLinkClasses}>Проект</NavLink>
                         <NavLink to="/form" className={navLinkClasses}>Форма</NavLink>
+                    </div>
+
+                    <div className="flex items-center gap-5 text-white">
+                        {!user ? (
+                            <NavLink to="/auth/login" title="Войти" className="hover:text-slate-300 transition-colors" onClick={(e) => { e.preventDefault(); navigate('/auth/login'); }}>
+                                <FaUserCircle size={28} />
+                            </NavLink>
+                        ) : (
+                            <div className="flex items-center gap-5">
+                                <span className="hidden sm:inline text-lg font-semibold">{user?.login}</span>
+
+                                {canManagePosts && (
+                                    <NavLink to="/post" title="Новая статья" className="hover:text-slate-300 transition-colors">
+                                        <FaPlusSquare size={24} />
+                                    </NavLink>
+                                )}
+
+                                {canManageUsers && (
+                                    <NavLink to="/users" title="Пользователи" className="hover:text-slate-300 transition-colors">
+                                        <FaUsers size={24} />
+                                    </NavLink>
+                                )}
+
+                                <button onClick={() => navigate(-1)} title="Назад" className="hover:text-slate-300 transition-colors">
+                                    <FaArrowLeft size={24} />
+                                </button>
+
+                                <button onClick={handleLogout} title="Выйти" className="hover:text-slate-300 transition-colors">
+                                    <FaSignOutAlt size={24} />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </nav>
             </div>
