@@ -1,27 +1,19 @@
-import {
-    createStore,
-    combineReducers,
-    applyMiddleware,
-    compose,
-    type AnyAction,
-    type Store,
-    type StoreEnhancer
-} from 'redux';
-import type {ThunkDispatch} from 'redux-thunk';
-import {thunk} from 'redux-thunk';
-import {authReducer, type AuthState, type AuthAction} from './reducers/authReducer';
-// import {postReducer, type PostState, type PostAction} from './reducers/postReducer';
+import { createStore, combineReducers, applyMiddleware, compose, type AnyAction, type Store, type StoreEnhancer } from 'redux';
+import type { ThunkDispatch } from 'redux-thunk';
+import { thunk } from 'redux-thunk';
+import { authReducer, type AuthState, type AuthAction } from './reducers/authReducer';
+import { postReducer, type PostState, type PostAction } from './reducers/postReducer';
 
 export interface RootState {
     auth: AuthState;
-    // posts: PostState;
+    posts: PostState;
 }
 
 export type RootAction = AuthAction | PostAction;
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    // posts: postReducer,
+    posts: postReducer,
 }) as (state: RootState | undefined, action: RootAction) => RootState;
 
 declare global {

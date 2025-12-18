@@ -1,0 +1,68 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@/components/ui/Button';
+import { Loader } from '@/components/ui/Loader';
+import { PostCard } from '@/components/PostCard';
+import { fetchPosts } from '@/store/actions/postActions';
+import { isAdminOrModerator } from '@/utils/permissions';
+import { useDebounce } from '@/hooks/useDebounce';
+import { FaSearch } from 'react-icons/fa';
+import type { RootState } from '@/store';
+
+export const Posts: React.FC = () => {
+    const posts = useSelector((state: RootState) => state.posts.posts);
+    const isLoading = useSelector((state: RootState) => state.posts.isLoading);
+    const user = useSelector((state: RootState) => state.auth.user);
+    const dispatch = useDispatch();
+    const [searchQuery, setSearchQuery] = useState('');
+    const debouncedSearch = useDebounce(searchQuery, 500);
+
+    useEffect(() => {
+        dispatch(fetchPosts(debouncedSearch) as any);
+    }, [dispatch, debouncedSearch]);
+
+    return (
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-0 flex flex-col">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                <h1 className="text-3xl font-bold text-slate-100">Статьи</h1>
+                {isAdminOrModerator(user?.role) && (
+                    <Link to="/post">
+                        <Button>Создать статью</Button>
+                    </Link>
+                )}
+            </div>
+
+            <div className="mb-8">
+                <div className="relative max-w-md">
+                    <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={18} />
+                    <input
+                        type="text"
+                        placeholder="Поиск по статьям..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full bg-slate-800 text-slate-100 rounded-lg pl-12 pr-4 py-3 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#00aaff] focus:border-transparent placeholder-slate-500"
+                    />
+                </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto hide-scrollbar">
+                {isLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                        <Loader label="Загружаем статьи..." />
+                    </div>
+                ) : posts.length === 0 ? (
+                    <div className="text-center text-slate-400 py-8">
+                        {searchQuery ? 'Статьи не найдены' : 'Статей пока нет'}
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-4">
+                        {posts.map((post) => (
+                            <PostCard key={post.id} post={post} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
