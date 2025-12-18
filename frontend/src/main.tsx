@@ -6,6 +6,7 @@ import {store} from "@/store";
 import {checkAuth} from "@/store/actions/authActions";
 import './index.css';
 
+
 async function bootstrap() {
     store.dispatch(checkAuth() as any);
 
