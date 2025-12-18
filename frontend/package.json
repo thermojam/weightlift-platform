@@ -12,7 +12,9 @@
     "author": "thermojam",
     "dependencies": {
         "@hookform/resolvers": "5.2.2",
+        "@radix-ui/react-slot": "1.2.4",
         "@tailwindcss/vite": "4.1.18",
+        "class-variance-authority": "0.7.1",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "react-hook-form": "7.68.0",
@@ -21,6 +23,7 @@
         "react-router-dom": "7.10.1",
         "redux": "5.0.1",
         "redux-thunk": "3.1.0",
+        "tailwind-merge": "3.4.0",
         "tailwindcss": "4.1.18",
         "yup": "1.7.1"
     },

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/Button';
 import mainImage from '/main-image.png';
 
 export const Home: React.FC = () => {
@@ -22,6 +23,10 @@ export const Home: React.FC = () => {
                                 <div
                                     className="cursor-pointer absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt">
                                 </div>
+                                <Button size="lg"
+                                        className="relative bg-black rounded-full text-2xl px-10 py-8 text-gray-300 transition-colors cursor-pointer">
+                                    Начать
+                                </Button>
                             </div>
                         </Link>
                     </div>
