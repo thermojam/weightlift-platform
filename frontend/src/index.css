@@ -21,24 +21,25 @@
     display: none;
 }
 
-@font-face {
-    font-family: Arounder;
-    src: url("assets/fonts/Arounder.otf") format("otf");
-}
+/*@font-face {*/
+/*    font-family: Arounder;*/
+/*    src: url("assets/fonts/Arounder.otf") format("otf");*/
+/*}*/
 
 @layer base {
     html, body {
         height: 100%;
         overflow: hidden;
+        font-family: Nunito, sans-serif;
     }
 
     #root {
         height: 100%;
     }
 
-    h1 {
-        font-family: Arounder, sans-serif;
-    }
+    /*h1 {*/
+    /*    font-family: Arounder, sans-serif;*/
+    /*}*/
 }
 
 @layer utilities {

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const routes = require('./routes');
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ app.use(cors({
     origin: "http://localhost:3000",
     credentials: true,
 }));
+
+app.use('/api', routes);
 
 mongoose.connect(MONGO_URL)
     .then(() => {
