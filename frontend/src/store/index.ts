@@ -1,19 +1,29 @@
-import { createStore, combineReducers, applyMiddleware, compose, type AnyAction, type Store, type StoreEnhancer } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose, type AnyAction, type Store } from 'redux';
 import type { ThunkDispatch } from 'redux-thunk';
 import { thunk } from 'redux-thunk';
-import { authReducer, type AuthState, type AuthAction } from './reducers/authReducer';
-import { postReducer, type PostState, type PostAction } from './reducers/postReducer';
+import { authReducer } from './auth/reducer';
+import type { AuthState, AuthAction } from './auth/types';
+import { postReducer } from './posts/reducer';
+import type { PostState, PostAction } from './posts/types';
+import { userReducer } from './user/reducer';
+import type { UserState, UserAction } from './user/types';
+import { feedbackReducer } from './feedback/reducer';
+import type { IFeedbackState } from './feedback/types';
 
 export interface RootState {
     auth: AuthState;
     posts: PostState;
+    user: UserState;
+    feedback: IFeedbackState;
 }
 
-export type RootAction = AuthAction | PostAction;
+export type RootAction = AuthAction | PostAction | UserAction | AnyAction;
 
 const rootReducer = combineReducers({
     auth: authReducer,
     posts: postReducer,
+    user: userReducer,
+    feedback: feedbackReducer,
 }) as (state: RootState | undefined, action: RootAction) => RootState;
 
 declare global {
@@ -24,12 +34,11 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk)) as StoreEnhancer<{}, {}>;
+const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-export const store: Store<RootState, RootAction> = createStore<RootState, RootAction, {}, {}>(
+export const store: Store<RootState, RootAction> = createStore(
     rootReducer,
     enhancer
 );
 
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
-

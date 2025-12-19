@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DOMPurify from 'dompurify';
 import { Button } from '@/components/ui/Button';
 import { Comments } from '@/components/Comments';
-import { fetchPost, deletePost } from '@/store/actions/postActions';
+import { fetchPost, deletePost } from '@/store/posts/actions';
 import { isAdminOrModerator } from '@/utils/permissions';
 import { Loader } from '@/components/ui/Loader';
 import { Modal } from '@/components/ui/Modal';

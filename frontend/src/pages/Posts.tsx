@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@/components/ui/Button';
 import { Loader } from '@/components/ui/Loader';
 import { PostCard } from '@/components/PostCard';
-import { fetchPosts } from '@/store/actions/postActions';
-import { isAdminOrModerator } from '@/utils/permissions';
+import { fetchPosts } from '@/store/posts/actions';
 import { useDebounce } from '@/hooks/useDebounce';
 import { FaSearch } from 'react-icons/fa';
 import type { RootState } from '@/store';
@@ -13,7 +10,6 @@ import type { RootState } from '@/store';
 export const Posts: React.FC = () => {
     const posts = useSelector((state: RootState) => state.posts.posts);
     const isLoading = useSelector((state: RootState) => state.posts.isLoading);
-    const user = useSelector((state: RootState) => state.auth.user);
     const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState('');
     const debouncedSearch = useDebounce(searchQuery, 500);
@@ -26,11 +22,6 @@ export const Posts: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-0 flex flex-col">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <h1 className="text-3xl font-bold text-slate-100">Статьи</h1>
-                {isAdminOrModerator(user?.role) && (
-                    <Link to="/post">
-                        <Button>Создать статью</Button>
-                    </Link>
-                )}
             </div>
 
             <div className="mb-8">

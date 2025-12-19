@@ -1,6 +1,6 @@
-import type { Dispatch } from 'redux';
+import type { AppDispatch } from '@/store';
 import { apiClient } from '@/apiClient';
-import { AUTH_ACTION_TYPES } from '../reducers/authReducer';
+import { AUTH_ACTION_TYPES } from './types';
 import type { IUser } from '@/types';
 
 export const setUser = (user: IUser | null) => ({
@@ -23,16 +23,16 @@ export const setError = (error: string | null) => ({
 });
 
 export const login = (login: string, password: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const res = await apiClient.post('/auth/login', { login, password });
+            const res = await apiClient.post<{ user: IUser }>('/auth/login', { login, password });
             dispatch(setUser(res.data.user));
             dispatch(setLoading(false));
             return { success: true };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка авторизации';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка авторизации';
             dispatch(setError(error));
             dispatch(setLoading(false));
             return { success: false, error };
@@ -41,16 +41,16 @@ export const login = (login: string, password: string) => {
 };
 
 export const register = (login: string, password: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const res = await apiClient.post('/auth/register', { login, password });
+            const res = await apiClient.post<{ user: IUser }>('/auth/register', { login, password });
             dispatch(setUser(res.data.user));
             dispatch(setLoading(false));
             return { success: true };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка регистрации';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка регистрации';
             dispatch(setError(error));
             dispatch(setLoading(false));
             return { success: false, error };
@@ -59,9 +59,9 @@ export const register = (login: string, password: string) => {
 };
 
 export const checkAuth = () => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
-            const res = await apiClient.get('/auth/me');
+            const res = await apiClient.get<{ user: IUser }>('/auth/me');
             dispatch(setUser(res.data.user));
         } catch {
             dispatch(logout());
@@ -70,14 +70,13 @@ export const checkAuth = () => {
 };
 
 export const logoutUser = () => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             await apiClient.post('/auth/logout');
-        } catch (e) {
+        } catch (e: unknown) {
             console.error('Logout error:', e);
         } finally {
             dispatch(logout());
         }
     };
 };
-

@@ -1,7 +1,7 @@
-import type { Dispatch } from 'redux';
+import type { AppDispatch } from '@/store';
 import { apiClient } from '@/apiClient';
-import { POST_ACTION_TYPES } from '../reducers/postReducer';
-import type { IPost } from '@/types';
+import { POST_ACTION_TYPES } from './types';
+import type { IPost, IComment } from '@/types';
 
 export const setPosts = (posts: IPost[]) => ({
     type: POST_ACTION_TYPES.SET_POSTS,
@@ -24,20 +24,20 @@ export const setError = (error: string | null) => ({
 });
 
 export const fetchPosts = (search?: string, limit?: number, page?: number) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const params: any = {};
+            const params: Record<string, string | number> = {};
             if (search) params.search = search;
             if (limit) params.limit = limit;
             if (page) params.page = page;
 
-            const response = await apiClient.get('/posts', { params });
+            const response = await apiClient.get<{ data: { posts: IPost[] } }>('/posts', { params });
             dispatch(setPosts(response.data.data.posts));
             dispatch(setLoading(false));
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка загрузки постов';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка загрузки постов';
             dispatch(setError(error));
             dispatch(setLoading(false));
         }
@@ -45,15 +45,15 @@ export const fetchPosts = (search?: string, limit?: number, page?: number) => {
 };
 
 export const fetchPost = (id: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const response = await apiClient.get(`/posts/${id}`);
+            const response = await apiClient.get<{ data: IPost }>(`/posts/${id}`);
             dispatch(setPost(response.data.data));
             dispatch(setLoading(false));
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка загрузки поста';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка загрузки поста';
             dispatch(setError(error));
             dispatch(setLoading(false));
         }
@@ -61,9 +61,9 @@ export const fetchPost = (id: string) => {
 };
 
 export const addPost = (post: Omit<IPost, 'id' | 'comments' | 'publishedAt'>) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
-            const response = await apiClient.post('/posts', {
+            const response = await apiClient.post<{ data: IPost }>('/posts', {
                 title: post.title,
                 content: post.content,
                 image: post.imageUrl,
@@ -73,17 +73,17 @@ export const addPost = (post: Omit<IPost, 'id' | 'comments' | 'publishedAt'>) =>
                 payload: response.data.data,
             });
             return { success: true, post: response.data.data };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка создания поста';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка создания поста';
             return { success: false, error };
         }
     };
 };
 
 export const updatePost = (id: string, post: Omit<IPost, 'id' | 'comments' | 'publishedAt'>) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
-            const response = await apiClient.patch(`/posts/${id}`, {
+            const response = await apiClient.patch<{ data: IPost }>(`/posts/${id}`, {
                 title: post.title,
                 content: post.content,
                 image: post.imageUrl,
@@ -93,15 +93,15 @@ export const updatePost = (id: string, post: Omit<IPost, 'id' | 'comments' | 'pu
                 payload: response.data.data,
             });
             return { success: true, post: response.data.data };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка обновления поста';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка обновления поста';
             return { success: false, error };
         }
     };
 };
 
 export const deletePost = (id: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             await apiClient.delete(`/posts/${id}`);
             dispatch({
@@ -109,31 +109,31 @@ export const deletePost = (id: string) => {
                 payload: id,
             });
             return { success: true };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка удаления поста';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка удаления поста';
             return { success: false, error };
         }
     };
 };
 
 export const addComment = (postId: string, content: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
-            const response = await apiClient.post(`/posts/${postId}/comments`, { content });
+            const response = await apiClient.post<{ data: IComment }>(`/posts/${postId}/comments`, { content });
             dispatch({
                 type: POST_ACTION_TYPES.ADD_COMMENT,
                 payload: { postId, comment: response.data.data },
             });
             return { success: true };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка добавления комментария';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка добавления комментария';
             return { success: false, error };
         }
     };
 };
 
 export const deleteComment = (postId: string, commentId: string) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: AppDispatch) => {
         try {
             await apiClient.delete(`/posts/${postId}/comments/${commentId}`);
             dispatch({
@@ -141,10 +141,9 @@ export const deleteComment = (postId: string, commentId: string) => {
                 payload: { postId, commentId },
             });
             return { success: true };
-        } catch (e: any) {
-            const error = e.response?.data?.error || 'Ошибка удаления комментария';
+        } catch (e: unknown) {
+            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка удаления комментария';
             return { success: false, error };
         }
     };
 };
-

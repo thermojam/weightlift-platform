@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { IComment } from '@/types';
 import { Button } from '@/components/ui/Button';
-import { deleteComment, fetchPost } from '@/store/actions/postActions';
+import { deleteComment, fetchPost } from '@/store/posts/actions';
 import { isAdminOrModerator } from '@/utils/permissions';
 import type { RootState } from '@/store';
 

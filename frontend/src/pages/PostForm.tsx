@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Loader } from '@/components/ui/Loader';
 import { Toast } from '@/components/ui/Toast';
 import { useToast } from '@/hooks/useToast';
-import { fetchPost, addPost, updatePost } from '@/store/actions/postActions';
+import { fetchPost, addPost, updatePost } from '@/store/posts/actions';
 import type { RootState } from '@/store';
 
 const schema = yup.object({

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { register as registerUser } from '@/store/actions/authActions';
+import { register as registerUser } from '@/store/auth/actions';
 import type { RootState } from '@/store';
 
 const schema = yup.object({

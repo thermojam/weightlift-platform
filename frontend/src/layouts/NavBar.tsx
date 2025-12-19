@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft } from 'react-icons/fa';
-import { logoutUser } from '@/store/actions/authActions';
+import { logoutUser } from '@/store/auth/actions';
 import { isAdminOrModerator, isAdmin } from '@/utils/permissions';
 import type { RootState } from '@/store';
 

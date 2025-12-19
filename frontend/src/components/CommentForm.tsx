@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
-import { addComment, fetchPost } from '@/store/actions/postActions';
+import { addComment, fetchPost } from '@/store/posts/actions';
 import type { RootState } from '@/store';
 
 interface CommentFormProps {
@@ -58,14 +58,13 @@ export const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
                 <div className="flex gap-4 justify-center">
                     <Button
                         onClick={() => navigate('/auth/login')}
-                        className="bg-[#00aaff] hover:bg-[#0088cc]"
+                        variant="primary"
                     >
                         Войти
                     </Button>
                     <Button
                         onClick={() => navigate('/auth/register')}
-                        variant="primary"
-                        className="border-[#00aaff] text-[#00aaff] hover:bg-[#00aaff] hover:text-white"
+                        variant="outline"
                     >
                         Зарегистрироваться
                     </Button>
