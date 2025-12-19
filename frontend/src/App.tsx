@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from '@/layouts/NavBar';
 import { Footer } from '@/layouts/Footer';
-import { Home, AuthPage, Post, Posts, PostForm } from "@/pages";
+import { Home, AuthPage, Post, Posts, PostForm, Videos } from "@/pages";
 import { Login } from "@/components/Login";
 import { Register } from "@/components/Register";
 import { NotFound } from '@/pages/NotFound';
@@ -21,6 +21,8 @@ export const App: React.FC = () => {
                             <Route path="/posts/:id" element={<Post/>}/>
                             <Route path="/post" element={<PostForm/>}/>
                             <Route path="/post/:id/edit" element={<PostForm/>}/>
+                            <Route path="/videos" element={<Videos/>}/>
+
 
                             <Route path="/auth" element={<AuthPage/>}>
                                 <Route index element={<Navigate to="login" replace/>}/>

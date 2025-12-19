@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
                         <img
                             src={mainImage}
                             alt="Coach"
-                            className="w-full max-w-md lg:max-w-lg xl:max-w-xl self-end rounded-lg"
+                            className="w-full max-w-md lg:max-w-lg xl:max-w-lg self-end rounded-lg"
                         />
                     </div>
                 </div>
