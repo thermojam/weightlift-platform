@@ -5,6 +5,7 @@ import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft, FaRegId
 import { logoutUser } from '@/store/auth/actions';
 import { isAdminOrModerator, isAdmin } from '@/utils/permissions';
 import type { RootState } from '@/store';
+import Logo from '@/assets/images/logo.svg'
 
 export const Navbar: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
@@ -29,7 +30,7 @@ export const Navbar: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <nav className="flex h-20 items-center justify-between">
                     <NavLink to="/" className="flex-shrink-0" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
-                        <img src="/logo.svg" alt="Logo" className="h-12 w-auto" />
+                        <img src={Logo} alt="Logo" className="h-12 w-auto" />
                     </NavLink>
 
                     <div className="hidden md:flex items-center gap-8 lg:gap-12">

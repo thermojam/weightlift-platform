@@ -2,8 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Button} from '@/components/ui/Button';
 import { FaArrowCircleRight } from "react-icons/fa";
-
-import mainImage from '/coach-img.png';
+import mainImage from '@/assets/images/coach.png';
 
 export const Home: React.FC = () => {
     return (

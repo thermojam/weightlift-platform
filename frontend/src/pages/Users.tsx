@@ -85,7 +85,7 @@ export const Users: React.FC = () => {
                 </div>
 
                 <button
-                    onClick={() => navigate('/feedbacks')}
+                    onClick={() => navigate('/feedback')}
                     className="flex items-center gap-2 text-slate-100 hover:text-slate-300 transition-colors text-left"
                 >
                     <FaEnvelope size={16} />
