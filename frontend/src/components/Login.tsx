@@ -34,7 +34,7 @@ export const Login: React.FC = () => {
     const onSubmit = async (data: LoginFormData) => {
         const result = await dispatch(login(data.login, data.password) as any);
         if (result.success) {
-            navigate('/');
+            navigate('/profile');
         }
     };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft, FaRegIdCard } from 'react-icons/fa';
 import { logoutUser } from '@/store/auth/actions';
 import { isAdminOrModerator, isAdmin } from '@/utils/permissions';
 import type { RootState } from '@/store';
@@ -47,6 +47,9 @@ export const Navbar: React.FC = () => {
                             </NavLink>
                         ) : (
                             <div className="flex items-center gap-5">
+                                <NavLink to="/profile" title="Профиль" className="hover:text-slate-300 transition-colors">
+                                    <FaRegIdCard size={28} />
+                                </NavLink>
                                 <span className="hidden sm:inline text-lg font-semibold">{user?.login}</span>
 
                                 {canManagePosts && (

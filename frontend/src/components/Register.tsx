@@ -47,7 +47,7 @@ export const Register: React.FC = () => {
     const onSubmit = async (data: RegisterFormData) => {
         const result = await dispatch(registerUser(data.login, data.password) as any);
         if (result.success) {
-            navigate('/');
+            navigate('/profile');
         }
     };
 
