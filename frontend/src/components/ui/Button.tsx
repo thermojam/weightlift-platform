@@ -17,9 +17,11 @@ const buttonVariants = cva(
                 primary: "text-slate-100 btn-skin",
                 secondary: "text-slate-300 btn-skin",
                 destructive: "text-slate-100 bg-red-500 hover:bg-red-600",
-                auth: "w-full p-4 border-none rounded-full bg-gradient-to-r from-[#00aaff] to-[#0088cc] text-white font-bold cursor-pointer transition-all duration-300 ease-in-out shadow-[5px_5px_10px_#1e1e1e,_-5px_-5px_10px_#3a3a3a] hover:shadow-[3px_3px_8px_#1e1e1e,_-3px_-3px_8px_#3a3a3a] hover:from-[#0088cc] hover:to-[#006699] disabled:opacity-50 disabled:cursor-not-allowed",
+                success: "text-slate-100 bg-green-500 hover:bg-green-600",
+                auth: "w-full p-4 border-none rounded-[50px] bg-gradient-to-r from-[#00aaff] to-[#0088cc] text-white font-bold cursor-pointer",
                 ghost: "text-lg font-bold text-slate-400 hover:text-white transition-colors",
                 outline: "border border-[#00aaff] text-[#00aaff] hover:bg-[#00aaff] hover:text-white",
+                link: "text-[#00aaff] underline-offset-4 hover:underline",
             },
             size: {
                 sm: "px-6 py-2 text-sm",

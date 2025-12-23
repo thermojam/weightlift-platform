@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import DOMPurify from 'dompurify';
-import { Button } from '@/components/ui/Button';
 import { Comments } from '@/components/Comments';
 import { fetchPost, deletePost } from '@/store/posts/actions';
 import { isAdminOrModerator } from '@/utils/permissions';
@@ -11,6 +10,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Toast } from '@/components/ui/Toast';
 import { useToast } from '@/hooks/useToast';
 import type { RootState } from '@/store';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 export const Post: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -65,19 +65,31 @@ export const Post: React.FC = () => {
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="bg-slate-800 rounded-lg shadow-lg p-8">
-                <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-t-lg mb-8" />
-                <h1 className="text-4xl font-bold text-slate-100 mb-4">{post.title}</h1>
                 <div className="flex justify-between items-center mb-4">
                     <p className="text-slate-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
                     {canEdit && (
-                        <div className="flex gap-4">
-                            <Button onClick={handleEdit}>Редактировать</Button>
-                            <Button onClick={() => setConfirmOpen(true)} variant="primary">Удалить</Button>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleEdit}
+                                className="text-[#00aaff] hover:text-[#0088cc] transition-colors p-1"
+                                title="Редактировать"
+                            >
+                                <FaEdit size={24} />
+                            </button>
+                            <button
+                                onClick={() => setConfirmOpen(true)}
+                                className="text-red-400 hover:text-red-300 transition-colors p-1"
+                                title="Удалить"
+                            >
+                                <FaTrash size={20} />
+                            </button>
                         </div>
                     )}
                 </div>
+                <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-t-lg mb-8" />
+                <h1 className="text-4xl font-bold text-slate-100 mb-4">{post.title}</h1>
                 <div
-                    className="text-slate-300"
+                    className="text-slate-300 prose prose-invert prose-lg max-w-none"
                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
                 />
             </div>

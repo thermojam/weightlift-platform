@@ -9,7 +9,6 @@ import { Modal } from '@/components/ui/Modal';
 import { Toast } from '@/components/ui/Toast';
 import { useToast } from '@/hooks/useToast';
 import { AdminLayout } from '@/layouts/AdminLayout';
-import {Button} from "@/components/ui";
 
 export const Users: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -81,14 +80,14 @@ export const Users: React.FC = () => {
                     <div className="text-[#00aaff] font-semibold">Действия</div>
                 </div>
 
-                {/* User Rows */}
+
                 {users.length === 0 ? (
                     <div className="text-center text-slate-400 py-8">Пользователи не найдены</div>
                 ) : (
                     users.map((user) => (
                         <div
                             key={user.id}
-                            className="bg-slate-800 border border-[#00aaff] rounded-lg p-4 grid grid-cols-5 gap-4 items-center"
+                            className="p-4 grid grid-cols-5 gap-4 items-center bg-[#3C4254]/90"
                         >
                             <div className="text-slate-100 font-medium">{user.login}</div>
                             <div className="text-slate-100">{user.login}@example.com</div>
@@ -133,20 +132,20 @@ export const Users: React.FC = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <Button
+                                        <button
                                             onClick={() => handleEdit(user)}
                                             className="text-[#00aaff] hover:text-[#0088cc] transition-colors p-1"
                                             title="Редактировать"
                                         >
-                                            <FaEdit size={16} />
-                                        </Button>
+                                            <FaEdit size={24}/>
+                                        </button>
                                         {user.id !== currentUser?.id && (
                                             <button
                                                 onClick={() => setConfirmUserId(user.id)}
                                                 className="text-red-400 hover:text-red-300 transition-colors p-1"
                                                 title="Удалить"
                                             >
-                                                <FaTrash size={16} />
+                                                <FaTrash size={20}/>
                                             </button>
                                         )}
                                     </>

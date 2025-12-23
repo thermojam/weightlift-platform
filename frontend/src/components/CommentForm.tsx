@@ -45,7 +45,6 @@ export const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
         }
     };
 
-    // Если пользователь не авторизован, показываем призыв к регистрации
     if (!user) {
         return (
             <div className="mt-8 bg-slate-800 rounded-lg p-6 border border-slate-700">

@@ -89,7 +89,6 @@ export const Form: React.FC = () => {
         try {
             await apiClient.post('/feedback', data);
             showToast('Форма успешно отправлена', 'success');
-            // Push the reset to the next event loop cycle to avoid race conditions
             setTimeout(() => reset(), 0);
         } catch (error: any) {
             showToast(error.response?.data?.error || 'Ошибка при отправке формы', 'error');
@@ -101,7 +100,7 @@ export const Form: React.FC = () => {
         let newValue: number;
         if (field === 'height') {
             newValue = Math.max(100, Math.min(250, current + delta));
-        } else { // weight
+        } else {
             newValue = Math.max(30, Math.min(300, current + delta));
         }
         setValue(field, newValue, { shouldValidate: true });
@@ -125,7 +124,7 @@ export const Form: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="max-w-4xl mx-auto w-full">
+                <div className="max-w-4xl mx-auto">
                     <div className="bg-[#1c202a]/50 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/30 p-8 border border-slate-700">
                         <h2 className="text-xl font-bold text-[#00aaff] mb-8 text-center">
                             Форма обратной связи
@@ -133,14 +132,12 @@ export const Form: React.FC = () => {
 
                         <form id="feedback-form" onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
 
-                            {/* --- Left Column --- */}
                             <div>
-                                <label htmlFor="fullName" className="block text-slate-400 mb-2 text-sm px-4">Имя + Фамилия</label>
+                                <label htmlFor="fullName" className="block text-slate-400 mb-2 text-sm px-4">Имя</label>
                                 <Input id="fullName" {...register('fullName')} type="text" placeholder="Adam Jones" variant="form" />
                                 {errors.fullName && <p className="text-red-400 text-sm mt-2 px-4">{errors.fullName.message}</p>}
                             </div>
 
-                            {/* --- Right Column --- */}
                             <div>
                                 <label htmlFor="discipline" className="block text-slate-400 mb-2 text-sm px-4">Дисциплина</label>
                                 <Controller
@@ -151,7 +148,7 @@ export const Form: React.FC = () => {
                                             <select
                                                 id="discipline"
                                                 {...field}
-                                                className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 appearance-none text-center"
+                                                className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-4 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 appearance-none text-center"
                                             >
                                                 <option value="weightlifting">Weightlifting</option>
                                                 <option value="powerlifting">Powerlifting</option>
@@ -165,7 +162,6 @@ export const Form: React.FC = () => {
                                 {errors.discipline && <p className="text-red-400 text-sm mt-2 text-center">{errors.discipline.message}</p>}
                             </div>
 
-                            {/* --- Left Column --- */}
                             <div>
                                 <label htmlFor="phone" className="block text-slate-400 mb-2 text-sm px-4">Номер телефона</label>
                                 <Controller
@@ -180,19 +176,18 @@ export const Form: React.FC = () => {
                                             onBlur={onBlur}
                                             inputRef={ref}
                                             placeholder="+7 (999) 999-99-99"
-                                            className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 placeholder-slate-500"
+                                            className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-4 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 placeholder-slate-500"
                                         />
                                     )}
                                 />
                                 {errors.phone && <p className="text-red-400 text-sm mt-2 px-4">{errors.phone.message}</p>}
                             </div>
 
-                            {/* --- Right Column --- */}
                             <div>
                                 <div className="grid grid-cols-3 gap-4 text-center">
                                     <div>
                                         <label className="block text-slate-400 mb-2 text-sm">Рост</label>
-                                        <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
+                                        <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 ">
                                             <Button type="button" onClick={() => adjustValue('height', -1)} variant="ghost" size="icon" className="rounded-r-none">-</Button>
                                             <span className="flex-grow text-center text-lg font-semibold select-none">{height}</span>
                                             <Button type="button" onClick={() => adjustValue('height', 1)} variant="ghost" size="icon" className="rounded-l-none">+</Button>
@@ -222,17 +217,14 @@ export const Form: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* --- Left Column --- */}
                             <div>
                                 <label htmlFor="city" className="block text-slate-400 mb-2 text-sm px-4">Город</label>
                                 <Input id="city" {...register('city')} type="text" placeholder="Saint - Petersburg" variant="form" />
                                 {errors.city && <p className="text-red-400 text-sm mt-2 px-4">{errors.city.message}</p>}
                             </div>
 
-                            {/* --- Right Column (Submit Button) --- */}
                             <div>
                                 <label className="block text-slate-400 mb-2 text-sm px-4 invisible">Отправить</label>
-                                <div className="p-[2px] rounded-full bg-gradient-to-r from-[#00aaff]/80 via-[#00aaff]/40 to-transparent w-full max-w-xs shadow-lg shadow-black/30">
                                     <Button variant="auth" size="md"
                                             type="submit"
                                             form="feedback-form"
@@ -240,7 +232,6 @@ export const Form: React.FC = () => {
                                     >
                                         {isSubmitting ? 'Отправка...' : 'Отправить'}
                                     </Button>
-                                </div>
                             </div>
 
                         </form>

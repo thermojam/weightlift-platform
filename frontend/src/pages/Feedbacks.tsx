@@ -78,7 +78,7 @@ export const Feedbacks: React.FC = () => {
                     </div>
                 ) : (
                     <>
-                        <div className="grid grid-cols-6 gap-4 px-4 text-[#00aaff] font-semibold text-sm">
+                        <div className="grid grid-cols-6 gap-2 px-2 text-[#00aaff] font-semibold text-sm">
                             <div>Имя</div>
                             <div>Телефон</div>
                             <div>Город</div>
@@ -89,7 +89,7 @@ export const Feedbacks: React.FC = () => {
                         {feedbacks.map((feedback: IFeedback) => (
                             <div
                                 key={feedback.id}
-                                className="bg-slate-800 border border-[#00aaff] rounded-lg p-4 grid grid-cols-6 gap-4 items-center"
+                                className="p-4 grid grid-cols-6 gap-2 items-center bg-[#3C4254]/90"
                             >
                                 <div className="text-slate-100 font-medium">{feedback.fullName}</div>
                                 <div className="text-slate-100">{feedback.phone}</div>

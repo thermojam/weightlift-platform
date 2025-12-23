@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { IComment } from '@/types';
-import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { deleteComment, fetchPost } from '@/store/posts/actions';
 import { isAdminOrModerator } from '@/utils/permissions';
 import type { RootState } from '@/store';
+import { FaTrash } from 'react-icons/fa';
 
 interface CommentProps {
     comment: IComment;
@@ -39,7 +39,13 @@ export const Comment: React.FC<CommentProps> = ({ comment, postId }) => {
                         <p className="text-slate-300">{comment.content}</p>
                     </div>
                     {canDelete && (
-                        <Button onClick={handleDeleteClick} variant="primary" size="sm">Удалить</Button>
+                        <button
+                            onClick={handleDeleteClick}
+                            className="text-red-400 hover:text-red-300 transition-colors p-1"
+                            title="Удалить"
+                        >
+                            <FaTrash size={16} />
+                        </button>
                     )}
                 </div>
                 <p className="text-xs text-slate-500 mt-2">{new Date(comment.publishedAt).toLocaleString()}</p>

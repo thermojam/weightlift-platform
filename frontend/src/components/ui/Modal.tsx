@@ -44,7 +44,7 @@ export const Modal: React.FC<ModalProps> = ({
                     </button>
                 </div>
                 <div className="px-6 py-4 flex justify-end gap-3">
-                    <Button variant="primary" onClick={onClose} disabled={confirmLoading}>
+                    <Button variant="outline" onClick={onClose} disabled={confirmLoading}>
                         {cancelText}
                     </Button>
                     <Button

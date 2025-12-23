@@ -14,7 +14,7 @@ export const NotFound: React.FC = () => {
 
                 <button
                     onClick={() => navigate('/')}
-                    className="neu-input flex items-center gap-3 bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-lg px-6 py-3 text-[#00aaff] hover:bg-slate-700/80 transition-all duration-300 hover:border-[#00aaff] group"
+                    className="flex items-center gap-3 cursor-pointer  rounded-lg px-6 py-3 text-[#00aaff] transition-all duration-300 hover:border-[#00aaff] group"
                 >
                     <span className="text-lg font-medium">Вернуться на главную</span>
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />

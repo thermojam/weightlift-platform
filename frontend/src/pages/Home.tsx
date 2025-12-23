@@ -22,7 +22,7 @@ export const Home: React.FC = () => {
                             <div className="relative group inline-block">
                                 <Button variant="secondary" size="lg">
                                     Создать аккаунт
-                                    <FaArrowCircleRight size={20} className="mx-2"/>
+                                    <FaArrowCircleRight size={20} className="mx-2 group-hover:translate-x-1 transition-transform"/>
                                 </Button>
                             </div>
                         </Link>

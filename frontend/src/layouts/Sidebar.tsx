@@ -36,8 +36,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
                 {!isCollapsed && <span>Свернуть</span>}
             </button>
 
-            {!isCollapsed && <div className="text-slate-100 text-sm">Меню</div>}
-
             <nav className="flex flex-col gap-2">
                 {visibleNavLinks.map(({ to, label, icon: Icon }) => (
                     <NavLink

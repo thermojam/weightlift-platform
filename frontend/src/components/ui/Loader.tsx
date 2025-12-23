@@ -15,16 +15,16 @@ const sizeMap: Record<NonNullable<LoaderProps["size"]>, string> = {
 
 export const Loader: React.FC<LoaderProps> = ({ size = "md", className, label }) => {
     return (
-        <div className={cn("flex flex-col items-center gap-2 text-slate-300", className)}>
-            <div
-                className={cn(
-                    "rounded-full border-4 border-slate-600 border-t-[#00aaff] animate-spin",
-                    sizeMap[size]
-                )}
-            />
-            {label && <span className="text-sm text-slate-400">{label}</span>}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-none">
+            <div className={cn("flex flex-col items-center gap-2 text-slate-300", className)}>
+                <div
+                    className={cn(
+                        "rounded-full border-4 border-slate-600 border-t-[#00aaff] animate-spin",
+                        sizeMap[size]
+                    )}
+                />
+                {label && <span className="text-sm text-slate-400">{label}</span>}
+            </div>
         </div>
     );
 };
-
-

@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <nav className="flex h-20 items-center justify-between">
                     <NavLink to="/" className="flex-shrink-0" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
-                        <img src={Logo} alt="Logo" className="h-12 w-auto" />
+                        <img src={Logo} alt="Logo" className="h-20 w-auto" />
                     </NavLink>
 
                     <div className="hidden md:flex items-center gap-8 lg:gap-12">
