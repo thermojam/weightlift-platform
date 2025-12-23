@@ -74,7 +74,7 @@ export const Users: React.FC = () => {
                 {/* Table Headers */}
                 <div className="grid grid-cols-5 gap-4 mb-4 px-4">
                     <div className="text-[#00aaff] font-semibold">Имя</div>
-                    <div className="text-[#00aaff] font-semibold">Почта</div>
+                    <div className="text-[#00aaff] font-semibold">Дата регистрации</div>
                     <div className="text-[#00aaff] font-semibold">Статус</div>
                     <div className="text-[#00aaff] font-semibold">Роль</div>
                     <div className="text-[#00aaff] font-semibold">Действия</div>
@@ -90,8 +90,9 @@ export const Users: React.FC = () => {
                             className="p-4 grid grid-cols-5 gap-4 items-center bg-[#3C4254]/90"
                         >
                             <div className="text-slate-100 font-medium">{user.login}</div>
-                            <div className="text-slate-100">{user.login}@example.com</div>
-                            <div className={user.isActive ? 'text-green-400' : 'text-red-400'}>
+                            <div className="text-slate-100">
+                                {user.registeredAt ? new Date(user.registeredAt).toLocaleDateString('ru-RU') : 'N/A'}
+                            </div>                            <div className={user.isActive ? 'text-green-400' : 'text-red-400'}>
                                 {user.isActive ? 'активен' : 'отключен'}
                             </div>
                             <div className="text-slate-100">

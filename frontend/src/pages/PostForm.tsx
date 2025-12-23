@@ -149,7 +149,7 @@ export const PostForm: React.FC = () => {
                         <p className="text-red-400 text-sm mt-1">{errors.content.message}</p>
                     )}
                 </div>
-                <Button type="submit">{isEditing ? 'Сохранить' : 'Создать'}</Button>
+                <Button variant="outline" type="submit">{isEditing ? 'Сохранить' : 'Создать'}</Button>
             </form>
             {toast && <Toast message={toast.message} type={toast.type} />}
         </div>

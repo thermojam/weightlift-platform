@@ -41,12 +41,14 @@ export const Profile: React.FC = () => {
                         <label className="text-sm text-[#00aaff]">Имя</label>
                         <p className="text-slate-100 font-medium">{user.login}</p>
                     </div>
+                    {user.registeredAt && (
+                        <div>
+                            <label className="text-sm text-[#00aaff]">Дата регистрации</label>
+                            <p className="text-slate-100">{new Date(user.registeredAt).toLocaleDateString('ru-RU')}</p>
+                        </div>
+                    )}
                     <div>
-                        <label className="text-sm text-[#00aaff]">Почта</label>
-                        <p className="text-slate-100">{user.login}@example.com</p>
-                    </div>
-                    <div>
-                        <label className="text-sm text-[#00aaff]">Роль</label>
+                        <label className="text-sm text-[#00aaff]">Статус</label>
                         <p className="text-slate-100">{user.role}</p>
                     </div>
                 </div>
