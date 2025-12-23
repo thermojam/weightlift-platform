@@ -52,7 +52,7 @@ export const Register: React.FC = () => {
     };
 
     return (
-        <div className="w-[400px]">
+        <div className="w-[500px]">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-8 bg-[#2c2c2c] rounded-[15px]">
                 <h1 className="text-2xl font-bold text-[#00aaff] mb-6 text-center">Регистрация</h1>
 

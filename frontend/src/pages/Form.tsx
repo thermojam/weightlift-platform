@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/useToast';
 const schema = yup.object({
     fullName: yup
         .string()
+        .trim()
         .required('Имя и фамилия обязательны')
         .min(2, 'Минимум 2 символа')
         .max(100, 'Максимум 100 символов'),
@@ -21,6 +22,7 @@ const schema = yup.object({
         .length(11, 'Неверный формат номера телефона'),
     city: yup
         .string()
+        .trim()
         .required('Город обязателен')
         .min(2, 'Минимум 2 символа')
         .max(100, 'Максимум 100 символов'),
@@ -61,7 +63,7 @@ export const Form: React.FC = () => {
         register,
         control,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
         setValue,
         watch,
         reset,
@@ -87,7 +89,8 @@ export const Form: React.FC = () => {
         try {
             await apiClient.post('/feedback', data);
             showToast('Форма успешно отправлена', 'success');
-            reset();
+            // Push the reset to the next event loop cycle to avoid race conditions
+            setTimeout(() => reset(), 0);
         } catch (error: any) {
             showToast(error.response?.data?.error || 'Ошибка при отправке формы', 'error');
         }
@@ -108,6 +111,8 @@ export const Form: React.FC = () => {
         setValue('gender', gender === 'male' ? 'female' : 'male', { shouldValidate: true });
     };
 
+    const formError = errors.fullName?.message || errors.phone?.message || errors.city?.message || errors.discipline?.message || errors.height?.message || errors.weight?.message || errors.gender?.message;
+
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-0 flex flex-col">
             <div className="flex-1 overflow-y-auto hide-scrollbar">
@@ -126,112 +131,118 @@ export const Form: React.FC = () => {
                             Форма обратной связи
                         </h2>
 
-                        <form id="feedback-form" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                                <div className="space-y-8">
-                                    <div>
-                                        <label htmlFor="fullName" className="block text-slate-400 mb-2 text-sm px-4">Имя + Фамилия</label>
-                                        <Input id="fullName" {...register('fullName')} type="text" placeholder="Adam Jones" variant="form" />
-                                        {errors.fullName && <p className="text-red-400 text-sm mt-2">{errors.fullName.message}</p>}
-                                    </div>
+                        <form id="feedback-form" onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
 
-                                    <div>
-                                        <label htmlFor="phone" className="block text-slate-400 mb-2 text-sm px-4">Номер телефона</label>
-                                        <Controller
-                                            name="phone"
-                                            control={control}
-                                            render={({ field: { onChange, onBlur, value, name, ref } }) => (
-                                                <IMaskInput
-                                                    mask="+{7} (000) 000-00-00"
-                                                    value={value}
-                                                    unmask={true}
-                                                    onAccept={(unmaskedValue) => onChange({ target: { name, value: unmaskedValue } })}
-                                                    onBlur={onBlur}
-                                                    inputRef={ref}
-                                                    placeholder="+7 (999) 999-99-99"
-                                                    className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 placeholder-slate-500"
-                                                />
-                                            )}
-                                        />
-                                        {errors.phone && <p className="text-red-400 text-sm mt-2 text-center">{errors.phone.message}</p>}
-                                    </div>
+                            {/* --- Left Column --- */}
+                            <div>
+                                <label htmlFor="fullName" className="block text-slate-400 mb-2 text-sm px-4">Имя + Фамилия</label>
+                                <Input id="fullName" {...register('fullName')} type="text" placeholder="Adam Jones" variant="form" />
+                                {errors.fullName && <p className="text-red-400 text-sm mt-2 px-4">{errors.fullName.message}</p>}
+                            </div>
 
-                                    <div>
-                                        <label htmlFor="city" className="block text-slate-400 mb-2 text-sm px-4">Город</label>
-                                        <Input id="city" {...register('city')} type="text" placeholder="Saint - Petersburg" variant="form" />
-                                        {errors.city && <p className="text-red-400 text-sm mt-2 text-center">{errors.city.message}</p>}
-                                    </div>
-                                </div>
-
-                                <div className="space-y-8">
-                                    <div>
-                                        <label htmlFor="discipline" className="block text-slate-400 mb-2 text-sm px-4">Дисциплина</label>
-                                        <Controller
-                                            name="discipline"
-                                            control={control}
-                                            render={({ field }) => (
-                                                <div className="relative">
-                                                    <select
-                                                        id="discipline"
-                                                        {...field}
-                                                        className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 appearance-none text-center"
-                                                    >
-                                                        <option value="weightlifting">Weightlifting</option>
-                                                        <option value="powerlifting">Powerlifting</option>
-                                                    </select>
-                                                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center pointer-events-none border border-slate-700 shadow-inner shadow-black/50">
-                                                        <FaArrowUp className="text-slate-400" size={12} />
-                                                    </div>
-                                                </div>
-                                            )}
-                                        />
-                                        {errors.discipline && <p className="text-red-400 text-sm mt-2 text-center">{errors.discipline.message}</p>}
-                                    </div>
-
-                                    <div className="grid grid-cols-3 gap-4 text-center">
-                                        <div>
-                                            <label className="block text-slate-400 mb-2 text-sm">Рост</label>
-                                            <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
-                                                <Button type="button" onClick={() => adjustValue('height', -1)} variant="ghost" size="icon" className="rounded-r-none">-</Button>
-                                                <span className="flex-grow text-center text-lg font-semibold select-none">{height}</span>
-                                                <Button type="button" onClick={() => adjustValue('height', 1)} variant="ghost" size="icon" className="rounded-l-none">+</Button>
-                                            </div>
-                                            {errors.height && <p className="text-red-400 text-xs mt-1 text-center">{errors.height.message}</p>}
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-slate-400 mb-2 text-sm">Вес</label>
-                                            <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
-                                                <Button type="button" onClick={() => adjustValue('weight', -1)} variant="ghost" size="icon" className="rounded-r-none">-</Button>
-                                                <span className="flex-grow text-center text-lg font-semibold select-none">{weight}</span>
-                                                <Button type="button" onClick={() => adjustValue('weight', 1)} variant="ghost" size="icon" className="rounded-l-none">+</Button>
-                                            </div>
-                                            {errors.weight && <p className="text-red-400 text-xs mt-1 text-center">{errors.weight.message}</p>}
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-slate-400 mb-2 text-sm">Пол</label>
-                                            <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
-                                                <Button type="button" onClick={toggleGender} variant="ghost" size="icon" className="rounded-r-none">-</Button>
-                                                <span className="flex-grow text-center text-lg font-semibold select-none">{gender === 'male' ? 'Муж' : 'Жен'}</span>
-                                                <Button type="button" onClick={toggleGender} variant="ghost" size="icon" className="rounded-l-none">+</Button>
-                                            </div>
-                                            {errors.gender && <p className="text-red-400 text-xs mt-1 text-center">{errors.gender.message}</p>}
-                                        </div>
-                                    </div>
-
-                                    <div className="md:col-start-2 flex justify-center pt-6">
-                                        <div className="p-[2px] rounded-full bg-gradient-to-r from-[#00aaff]/80 via-[#00aaff]/40 to-transparent w-full max-w-xs shadow-lg shadow-black/30">
-                                            <Button variant="auth" size="md"
-                                                    type="submit"
-                                                    form="feedback-form"
+                            {/* --- Right Column --- */}
+                            <div>
+                                <label htmlFor="discipline" className="block text-slate-400 mb-2 text-sm px-4">Дисциплина</label>
+                                <Controller
+                                    name="discipline"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <div className="relative">
+                                            <select
+                                                id="discipline"
+                                                {...field}
+                                                className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 appearance-none text-center"
                                             >
-                                                Отправить
-                                            </Button>
+                                                <option value="weightlifting">Weightlifting</option>
+                                                <option value="powerlifting">Powerlifting</option>
+                                            </select>
+                                            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center pointer-events-none border border-slate-700 shadow-inner shadow-black/50">
+                                                <FaArrowUp className="text-slate-400" size={12} />
+                                            </div>
                                         </div>
+                                    )}
+                                />
+                                {errors.discipline && <p className="text-red-400 text-sm mt-2 text-center">{errors.discipline.message}</p>}
+                            </div>
+
+                            {/* --- Left Column --- */}
+                            <div>
+                                <label htmlFor="phone" className="block text-slate-400 mb-2 text-sm px-4">Номер телефона</label>
+                                <Controller
+                                    name="phone"
+                                    control={control}
+                                    render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                                        <IMaskInput
+                                            mask="+{7} (000) 000-00-00"
+                                            value={value || ''}
+                                            unmask={true}
+                                            onAccept={(unmaskedValue) => onChange({ target: { name, value: unmaskedValue } })}
+                                            onBlur={onBlur}
+                                            inputRef={ref}
+                                            placeholder="+7 (999) 999-99-99"
+                                            className="w-full bg-slate-900/50 text-slate-200 rounded-full px-6 py-3 border-2 border-slate-800 shadow-inner shadow-black/40 focus:outline-none focus:border-[#00aaff]/50 placeholder-slate-500"
+                                        />
+                                    )}
+                                />
+                                {errors.phone && <p className="text-red-400 text-sm mt-2 px-4">{errors.phone.message}</p>}
+                            </div>
+
+                            {/* --- Right Column --- */}
+                            <div>
+                                <div className="grid grid-cols-3 gap-4 text-center">
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Рост</label>
+                                        <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
+                                            <Button type="button" onClick={() => adjustValue('height', -1)} variant="ghost" size="icon" className="rounded-r-none">-</Button>
+                                            <span className="flex-grow text-center text-lg font-semibold select-none">{height}</span>
+                                            <Button type="button" onClick={() => adjustValue('height', 1)} variant="ghost" size="icon" className="rounded-l-none">+</Button>
+                                        </div>
+                                        {errors.height && <p className="text-red-400 text-xs mt-1 text-center">{errors.height.message}</p>}
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Вес</label>
+                                        <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
+                                            <Button type="button" onClick={() => adjustValue('weight', -1)} variant="ghost" size="icon" className="rounded-r-none">-</Button>
+                                            <span className="flex-grow text-center text-lg font-semibold select-none">{weight}</span>
+                                            <Button type="button" onClick={() => adjustValue('weight', 1)} variant="ghost" size="icon" className="rounded-l-none">+</Button>
+                                        </div>
+                                        {errors.weight && <p className="text-red-400 text-xs mt-1 text-center">{errors.weight.message}</p>}
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-slate-400 mb-2 text-sm">Пол</label>
+                                        <div className="flex items-center justify-between bg-slate-900/50 text-slate-200 rounded-full border-2 border-slate-800 shadow-inner shadow-black/40 w-full">
+                                            <Button type="button" onClick={toggleGender} variant="ghost" size="icon" className="rounded-r-none">-</Button>
+                                            <span className="flex-grow text-center text-lg font-semibold select-none">{gender === 'male' ? 'Муж' : 'Жен'}</span>
+                                            <Button type="button" onClick={toggleGender} variant="ghost" size="icon" className="rounded-l-none">+</Button>
+                                        </div>
+                                        {errors.gender && <p className="text-red-400 text-xs mt-1 text-center">{errors.gender.message}</p>}
                                     </div>
                                 </div>
                             </div>
+
+                            {/* --- Left Column --- */}
+                            <div>
+                                <label htmlFor="city" className="block text-slate-400 mb-2 text-sm px-4">Город</label>
+                                <Input id="city" {...register('city')} type="text" placeholder="Saint - Petersburg" variant="form" />
+                                {errors.city && <p className="text-red-400 text-sm mt-2 px-4">{errors.city.message}</p>}
+                            </div>
+
+                            {/* --- Right Column (Submit Button) --- */}
+                            <div>
+                                <label className="block text-slate-400 mb-2 text-sm px-4 invisible">Отправить</label>
+                                <div className="p-[2px] rounded-full bg-gradient-to-r from-[#00aaff]/80 via-[#00aaff]/40 to-transparent w-full max-w-xs shadow-lg shadow-black/30">
+                                    <Button variant="auth" size="md"
+                                            type="submit"
+                                            form="feedback-form"
+                                            disabled={isSubmitting || !!formError}
+                                    >
+                                        {isSubmitting ? 'Отправка...' : 'Отправить'}
+                                    </Button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
