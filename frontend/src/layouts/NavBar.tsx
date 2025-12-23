@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaUserCircle, FaSignOutAlt, FaPlusSquare, FaUsers, FaArrowLeft, FaRegIdCard } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
 import { logoutUser } from '@/store/auth/actions';
-import { isAdminOrModerator, isAdmin } from '@/utils/permissions';
 import type { RootState } from '@/store';
-import Logo from '@/assets/images/logo.svg'
+import Logo from  '@/assets/images/logo.svg'
 
 export const Navbar: React.FC = () => {
     const user = useSelector((state: RootState) => state.auth.user);
@@ -21,9 +20,6 @@ export const Navbar: React.FC = () => {
         `relative text-slate-100 py-2 transition-colors duration-300 hover:text-slate-300 ` +
         `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-slate-300 after:transition-transform after:duration-300 ` +
         (isActive ? 'text-slate-300 after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100');
-
-    const canManagePosts = isAdminOrModerator(user?.role);
-    const canManageUsers = isAdmin(user?.role);
 
     return (
         <header className="header-gradient shadow-lg">
@@ -48,28 +44,15 @@ export const Navbar: React.FC = () => {
                             </NavLink>
                         ) : (
                             <div className="flex items-center gap-5">
-                                <NavLink to="/profile" title="Профиль" className="hover:text-slate-300 transition-colors">
-                                    <FaRegIdCard size={28} />
+                                <NavLink to="/profile" title="Профиль" className="hidden sm:inline text-lg font-semibold hover:text-slate-300 transition-colors">
+                                    {user?.login}
                                 </NavLink>
-                                <span className="hidden sm:inline text-lg font-semibold">{user?.login}</span>
-
-                                {canManagePosts && (
-                                    <NavLink to="/post" title="Новая статья" className="hover:text-slate-300 transition-colors">
-                                        <FaPlusSquare size={24} />
-                                    </NavLink>
-                                )}
-
-                                {canManageUsers && (
-                                    <NavLink to="/users" title="Пользователи" className="hover:text-slate-300 transition-colors">
-                                        <FaUsers size={24} />
-                                    </NavLink>
-                                )}
 
                                 <button onClick={() => navigate(-1)} title="Назад" className="hover:text-slate-300 transition-colors">
                                     <FaArrowLeft size={24} />
                                 </button>
 
-                                <button onClick={handleLogout} title="Выйти" className="hover:text-slate-300 transition-colors">
+                                <button onClick={handleLogout} title="Выйти" className="hover:text-slate-300 transition-colors cursor-pointer">
                                     <FaSignOutAlt size={24} />
                                 </button>
                             </div>
