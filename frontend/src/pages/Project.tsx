@@ -12,7 +12,7 @@ type Member = {
 
 const members: Member[] = [
     {
-        name: 'Андрей Павлючин',
+        name: 'Андрей Павлухин',
         handle: '@Weightlifting1989',
         link: 'https://t.me/Weightlifting1989',
         avatar: 'https://yt3.googleusercontent.com/f2RsrRclaF6dhvB18fSQ9JwwTiKtnxlzO4qRnfhamy4mBQTRPRxQEdZf8FqDxUexWTOK8mXmCcE=s900-c-k-c0x00ffffff-no-rj',
@@ -20,7 +20,7 @@ const members: Member[] = [
             'Опытный специалист с многолетней практикой в области спортивных тренировок и реабилитации. Помогает каждому участнику достигать личных целей, разрабатывая индивидуальные программы и поддерживая мотивацию на всех этапах.',
     },
     {
-        name: 'Салим Харьяковский',
+        name: 'Салим Харьковский',
         handle: '@MagicPower268',
         link: 'https://t.me/MagicPower268',
         avatar: 'https://sun1-18.userapi.com/s/v1/ig2/0Jx87EYYeKYqqKCaOi0FzvO1c92He6QAL737wBF3I3JzjPaH8-9Kgz6Y61CijzlL1emSSlK21Nzp8Atte2UwGxiF.jpg?quality=95&crop=317,856,480,480&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&cs=240x240',

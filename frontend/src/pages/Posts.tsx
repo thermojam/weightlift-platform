@@ -6,6 +6,23 @@ import { fetchPosts } from '@/store/posts/actions';
 import { useDebounce } from '@/hooks/useDebounce';
 import { FaSearch } from 'react-icons/fa';
 import type { RootState } from '@/store';
+import { motion } from 'framer-motion';
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            delay: 0.5,
+            duration: 0.5,
+        },
+    },
+};
+
+const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+};
 
 export const Posts: React.FC = () => {
     const posts = useSelector((state: RootState) => state.posts.posts);
@@ -47,11 +64,18 @@ export const Posts: React.FC = () => {
                         {searchQuery ? 'Статьи не найдены' : 'Статей пока нет'}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-4">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-4"
+                        variants={container}
+                        initial="hidden"
+                        animate="show"
+                    >
                         {posts.map((post) => (
-                            <PostCard key={post.id} post={post} />
+                            <motion.div key={post.id} variants={item}>
+                                <PostCard post={post} />
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 )}
             </div>
         </div>
