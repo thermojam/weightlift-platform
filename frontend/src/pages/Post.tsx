@@ -1,48 +1,22 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import DOMPurify from 'dompurify';
-import { Comments } from '@/components/Comments';
-import { fetchPost, deletePost } from '@/store/posts/actions';
-import { isAdminOrModerator } from '@/utils/permissions';
-import { Loader } from '@/components/ui/Loader';
-import { Modal } from '@/components/ui/Modal';
-import { Toast } from '@/components/ui/Toast';
-import { useToast } from '@/hooks/useToast';
-import type { RootState } from '@/store';
+import { Comments } from '@/widgets/Comments';
+import { Loader, Modal, Toast } from '@/shared/ui';
+import { usePost } from '@/shared/lib/usePost';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
 export const Post: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
-    const navigate = useNavigate();
-    const user = useSelector((state: RootState) => state.auth.user);
-    const post = useSelector((state: RootState) => state.posts.post);
-    const isLoading = useSelector((state: RootState) => state.posts.isLoading);
-    const error = useSelector((state: RootState) => state.posts.error);
-    const dispatch = useDispatch();
-    const { toast, showToast } = useToast();
-    const [confirmOpen, setConfirmOpen] = React.useState(false);
-
-    useEffect(() => {
-        if (id) {
-            dispatch(fetchPost(id) as any);
-        }
-    }, [id, dispatch]);
-
-    const handleEdit = () => {
-        navigate(`/post/${id}/edit`);
-    };
-
-    const handleDelete = async () => {
-        if (!id) return;
-        const result = await dispatch(deletePost(id) as any);
-        if (result.success) {
-            showToast('Статья удалена', 'success');
-            navigate('/');
-        } else if (result.error) {
-            showToast(result.error, 'error');
-        }
-    };
+    const {
+        post,
+        isLoading,
+        error,
+        toast,
+        confirmOpen,
+        canEdit,
+        setConfirmOpen,
+        handleEdit,
+        handleDelete,
+    } = usePost();
 
     if (isLoading) {
         return (
@@ -59,8 +33,6 @@ export const Post: React.FC = () => {
     if (!post) {
         return <div className="text-center text-slate-400 py-12">Статья не найдена</div>;
     }
-
-    const canEdit = isAdminOrModerator(user?.role);
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">

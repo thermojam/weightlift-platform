@@ -1,62 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { fetchUsers, deleteUser, updateUser, fetchRoles } from '@/store/user/actions';
-import type { RootState, AppDispatch } from '@/store';
-import type { IUser } from '@/store/user/types';
-import { Loader } from '@/components/ui/Loader';
-import { Modal } from '@/components/ui/Modal';
-import { Toast } from '@/components/ui/Toast';
-import { useToast } from '@/hooks/useToast';
-import { AdminLayout } from '@/layouts/AdminLayout';
+import type { IUser } from '@/app/store/user/types';
+import { Loader, Modal, Toast } from '@/shared/ui';
+import { AdminLayout } from '@/widgets/AdminLayout';
+import { useUsers } from '@/shared/lib/useUsers';
 
 export const Users: React.FC = () => {
-    const dispatch: AppDispatch = useDispatch();
-    const { users, roles, isLoading } = useSelector((state: RootState) => state.user);
-    const currentUser = useSelector((state: RootState) => state.auth.user);
-
-    const [editingUser, setEditingUser] = useState<string | null>(null);
-    const [selectedRole, setSelectedRole] = useState<number | null>(null);
-    const [confirmUserId, setConfirmUserId] = useState<string | null>(null);
-    const { showToast, toast } = useToast();
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-        dispatch(fetchRoles());
-    }, [dispatch]);
-
-    const handleEdit = (user: IUser) => {
-        setEditingUser(user.id);
-        const role = roles.find(r => r.name === user.role);
-        setSelectedRole(role ? role.id : null);
-    };
-
-    const handleSaveRole = async (userId: string) => {
-        if (selectedRole === null) return;
-
-        const result = await dispatch(updateUser(userId, selectedRole));
-        if (result.success) {
-            showToast('Роль обновлена', 'success');
-            setEditingUser(null);
-            setSelectedRole(null);
-        } else {
-            showToast(result.error || 'Ошибка обновления роли', 'error');
-        }
-    };
-
-    const handleDelete = async (userId: string) => {
-        const result = await dispatch(deleteUser(userId));
-        if (result.success) {
-            showToast('Пользователь удалён', 'success');
-        } else {
-            showToast(result.error || 'Ошибка удаления пользователя', 'error');
-        }
-    };
-
-    const getRoleName = (roleName: string): string => {
-        const role = roles.find(r => r.name === roleName);
-        return role ? role.name.toLowerCase() : roleName.toLowerCase();
-    };
+    const {
+        users,
+        roles,
+        isLoading,
+        currentUser,
+        editingUser,
+        selectedRole,
+        confirmUserId,
+        toast,
+        getRoleName,
+        setSelectedRole,
+        setConfirmUserId,
+        handleEdit,
+        handleCancelEdit,
+        handleSaveRole,
+        handleDelete,
+    } = useUsers();
 
     if (isLoading) {
         return (
@@ -71,7 +37,6 @@ export const Users: React.FC = () => {
             <h1 className="text-4xl font-bold text-slate-100 mb-8 text-center">Все пользователи</h1>
 
             <div className="space-y-4 max-w-6xl mx-auto">
-                {/* Table Headers */}
                 <div className="grid grid-cols-5 gap-4 mb-4 px-4">
                     <div className="text-[#00aaff] font-semibold">Имя</div>
                     <div className="text-[#00aaff] font-semibold">Дата регистрации</div>
@@ -80,11 +45,10 @@ export const Users: React.FC = () => {
                     <div className="text-[#00aaff] font-semibold">Действия</div>
                 </div>
 
-
                 {users.length === 0 ? (
                     <div className="text-center text-slate-400 py-8">Пользователи не найдены</div>
                 ) : (
-                    users.map((user) => (
+                    users.map((user: IUser) => (
                         <div
                             key={user.id}
                             className="p-4 grid grid-cols-5 gap-4 items-center bg-[#3C4254]/90"
@@ -92,7 +56,8 @@ export const Users: React.FC = () => {
                             <div className="text-slate-100 font-medium">{user.login}</div>
                             <div className="text-slate-100">
                                 {user.registeredAt ? new Date(user.registeredAt).toLocaleDateString('ru-RU') : 'N/A'}
-                            </div>                            <div className={user.isActive ? 'text-green-400' : 'text-red-400'}>
+                            </div>
+                            <div className={user.isActive ? 'text-green-400' : 'text-red-400'}>
                                 {user.isActive ? 'активен' : 'отключен'}
                             </div>
                             <div className="text-slate-100">
@@ -122,10 +87,7 @@ export const Users: React.FC = () => {
                                             Сохранить
                                         </button>
                                         <button
-                                            onClick={() => {
-                                                setEditingUser(null);
-                                                setSelectedRole(null);
-                                            }}
+                                            onClick={handleCancelEdit}
                                             className="text-red-400 hover:text-red-300 transition-colors text-sm"
                                         >
                                             Отмена
@@ -164,12 +126,7 @@ export const Users: React.FC = () => {
                 cancelText="Отмена"
                 destructive
                 onClose={() => setConfirmUserId(null)}
-                onConfirm={() => {
-                    if (confirmUserId) {
-                        handleDelete(confirmUserId);
-                    }
-                    setConfirmUserId(null);
-                }}
+                onConfirm={() => confirmUserId && handleDelete(confirmUserId)}
             />
             {toast && <Toast message={toast.message} type={toast.type} />}
         </AdminLayout>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Button} from '@/components/ui/Button';
-import { FaArrowCircleRight } from "react-icons/fa";
+import {Button} from '@/shared/ui';
+import {FaArrowCircleRight} from "react-icons/fa";
 import mainImage from '@/assets/images/coach.png';
 
 export const Home: React.FC = () => {
@@ -22,7 +22,8 @@ export const Home: React.FC = () => {
                             <div className="relative group inline-block">
                                 <Button variant="secondary" size="lg">
                                     Создать аккаунт
-                                    <FaArrowCircleRight size={20} className="mx-2 group-hover:translate-x-1 transition-transform"/>
+                                    <FaArrowCircleRight size={20}
+                                                        className="mx-2 group-hover:translate-x-1 transition-transform"/>
                                 </Button>
                             </div>
                         </Link>

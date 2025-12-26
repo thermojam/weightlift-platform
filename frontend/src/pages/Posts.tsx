@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Loader } from '@/components/ui/Loader';
-import { PostCard } from '@/components/PostCard';
-import { fetchPosts } from '@/store/posts/actions';
-import { useDebounce } from '@/hooks/useDebounce';
+import React, { useState } from 'react';
+import { Loader } from '@/shared/ui/Loader';
+import { PostCard } from '@/widgets/PostCard';
+import { usePosts } from '@/shared/lib/usePosts';
 import { FaSearch } from 'react-icons/fa';
-import type { RootState } from '@/store';
 import { motion } from 'framer-motion';
 
 const container = {
@@ -25,15 +22,8 @@ const item = {
 };
 
 export const Posts: React.FC = () => {
-    const posts = useSelector((state: RootState) => state.posts.posts);
-    const isLoading = useSelector((state: RootState) => state.posts.isLoading);
-    const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState('');
-    const debouncedSearch = useDebounce(searchQuery, 500);
-
-    useEffect(() => {
-        dispatch(fetchPosts(debouncedSearch) as any);
-    }, [dispatch, debouncedSearch]);
+    const { posts, isLoading } = usePosts(searchQuery);
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-0 flex flex-col">

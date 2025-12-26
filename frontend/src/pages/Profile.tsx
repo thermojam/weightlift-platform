@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FaEdit } from 'react-icons/fa';
-import type { RootState } from '@/store';
-import { Loader } from '@/components/ui/Loader';
-import { AdminLayout } from '@/layouts/AdminLayout';
+import type { RootState } from '@/app/store';
+import { Loader } from '@/shared/ui/Loader';
+import { AdminLayout } from '@/widgets/AdminLayout';
 
 export const Profile: React.FC = () => {
     const { user, isLoading } = useSelector((state: RootState) => state.auth);

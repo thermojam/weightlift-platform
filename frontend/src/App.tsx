@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar } from '@/layouts/NavBar';
-import { Footer } from '@/layouts/Footer';
+import { Navbar } from '@/widgets/NavBar';
+import { Footer } from '@/widgets/Footer';
 import { Home, AuthPage, Post, Posts, PostForm, Videos, Form, Project, Users, Feedbacks, Profile, NotFound } from "@/pages";
-import { Login } from "@/components/Login";
-import { Register } from "@/components/Register";
+import { LoginForm } from "@/features/auth/login/ui/LoginForm"
+import { RegisterForm } from "@/features/auth/register/ui/RegisterForm";
 
 
 export const App: React.FC = () => {
@@ -16,7 +16,7 @@ export const App: React.FC = () => {
                     <div className="flex-1 overflow-y-auto hide-scrollbar">
                         <Routes>
                             <Route path="/" element={<Home/>}/>
-                            <Route path="/articles" element={<Posts/>}/>
+                            <Route path="/posts" element={<Posts/>}/>
                             <Route path="/posts/:id" element={<Post/>}/>
                             <Route path="/post" element={<PostForm/>}/>
                             <Route path="/post/:id/edit" element={<PostForm/>}/>
@@ -28,11 +28,10 @@ export const App: React.FC = () => {
                             <Route path="/profile" element={<Profile />} />
 
 
-
                             <Route path="/auth" element={<AuthPage/>}>
                                 <Route index element={<Navigate to="login" replace/>}/>
-                                <Route path="login" element={<Login/>}/>
-                                <Route path="register" element={<Register/>}/>
+                                <Route path="login" element={<LoginForm/>}/>
+                                <Route path="register" element={<RegisterForm/>}/>
                             </Route>
                             <Route path="/login" element={<Navigate to="/auth/login" replace/>}/>
 

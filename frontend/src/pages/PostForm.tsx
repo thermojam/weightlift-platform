@@ -4,12 +4,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@/components/ui/Button';
-import { Loader } from '@/components/ui/Loader';
-import { Toast } from '@/components/ui/Toast';
-import { useToast } from '@/hooks/useToast';
-import { fetchPost, addPost, updatePost } from '@/store/posts/actions';
-import type { RootState } from '@/store';
+import { Button, Loader, Toast  } from '@/shared/ui';
+import { useToast } from '@/shared/lib/useToast';
+import { fetchPost, addPost, updatePost } from '@/app/store/posts/actions';
+import type { RootState } from '@/app/store';
 
 const schema = yup.object({
     title: yup
@@ -36,7 +34,7 @@ interface PostFormData {
 export const PostForm: React.FC = () => {
     const { id } = useParams<{ id?: string }>();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const post = useSelector((state: RootState) => state.posts.post);
     const error = useSelector((state: RootState) => state.posts.error);
     const isLoading = useSelector((state: RootState) => state.posts.isLoading);
@@ -54,7 +52,7 @@ export const PostForm: React.FC = () => {
 
     useEffect(() => {
         if (isEditing && id) {
-            dispatch(fetchPost(id) as any);
+            dispatch(fetchPost(id));
         }
     }, [id, isEditing, dispatch]);
 
@@ -74,20 +72,20 @@ export const PostForm: React.FC = () => {
         };
 
         if (isEditing && id) {
-            const result = await dispatch(updatePost(id, postData) as any);
+            const result = await dispatch(updatePost(id, postData));
             if (result.success) {
                 showToast('Статья обновлена', 'success');
                 navigate(`/posts/${id}`);
             } else if (result.error) {
-                showToast(result.error, 'error');
+                showToast(result.error.message, 'error');
             }
         } else {
-            const result = await dispatch(addPost(postData) as any);
-            if (result.success && result.post) {
+            const result = await dispatch(addPost(postData));
+            if (result.payload) {
                 showToast('Статья создана', 'success');
-                navigate(`/posts/${result.post.id}`);
+                navigate(`/posts/${result.payload.id}`);
             } else if (result.error) {
-                showToast(result.error, 'error');
+                showToast(result.error.message, 'error');
             }
         }
     };
@@ -101,7 +99,7 @@ export const PostForm: React.FC = () => {
     }
 
     if (isEditing && error && !post) {
-        return <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-red-400">{error}</div>;
+        return <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-red-400">{error as string}</div>;
     }
 
     return (
@@ -109,7 +107,7 @@ export const PostForm: React.FC = () => {
             <h1 className="text-3xl font-bold text-slate-100 mb-8">{isEditing ? 'Редактировать статью' : 'Создать статью'}</h1>
             {error && (
                 <div className="bg-red-900/50 text-red-400 text-sm text-center p-3 rounded-lg mb-4">
-                    {error}
+                    {error as string}
                 </div>
             )}
             <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-800 rounded-lg shadow-lg p-8">
