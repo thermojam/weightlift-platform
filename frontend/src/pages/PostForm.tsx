@@ -81,9 +81,9 @@ export const PostForm: React.FC = () => {
             }
         } else {
             const result = await dispatch(addPost(postData));
-            if (result.payload) {
+            if (result.success) {
                 showToast('Статья создана', 'success');
-                navigate(`/posts/${result.payload.id}`);
+                navigate('/posts');
             } else if (result.error) {
                 showToast(result.error.message, 'error');
             }

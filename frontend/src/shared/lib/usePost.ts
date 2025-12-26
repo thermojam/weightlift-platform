@@ -34,7 +34,7 @@ export const usePost = () => {
         const result = await dispatch(deletePost(id) as any);
         if (result.success) {
             showToast('Статья удалена', 'success');
-            navigate('/');
+            navigate('/posts');
         } else if (result.error) {
             showToast(result.error, 'error');
         }

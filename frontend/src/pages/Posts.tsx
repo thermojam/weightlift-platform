@@ -16,11 +16,6 @@ const container = {
     },
 };
 
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-};
-
 export const Posts: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { posts, isLoading } = usePosts(searchQuery);
@@ -61,7 +56,7 @@ export const Posts: React.FC = () => {
                         animate="show"
                     >
                         {posts.map((post) => (
-                            <motion.div key={post.id} variants={item}>
+                            <motion.div key={post.id}>
                                 <PostCard post={post} />
                             </motion.div>
                         ))}
