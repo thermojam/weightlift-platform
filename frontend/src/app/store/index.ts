@@ -10,21 +10,25 @@ import { userReducer } from './user/reducer';
 import type { UserState, UserAction } from './user/types';
 import { feedbackReducer } from './feedback/reducer';
 import type { IFeedbackState } from './feedback/types';
+import { diaryReducer } from './diary/reducer';
+import type { DiaryState, DiaryActionTypes } from './diary/types';
 
 export interface RootState {
     auth: AuthState;
     posts: PostState;
     user: UserState;
     feedback: IFeedbackState;
+    diary: DiaryState;
 }
 
-export type RootAction = AuthAction | PostAction | UserAction | AnyAction | Action;
+export type RootAction = AuthAction | PostAction | UserAction | DiaryActionTypes | AnyAction | Action;
 
 const rootReducer = combineReducers({
     auth: authReducer,
     posts: postReducer,
     user: userReducer,
     feedback: feedbackReducer,
+    diary: diaryReducer,
 });
 
 declare global {

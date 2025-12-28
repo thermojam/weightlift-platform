@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from '@/widgets/NavBar';
 import { Footer } from '@/widgets/Footer';
-import { Home, AuthPage, Post, Posts, PostForm, Videos, Form, Project, Users, Feedbacks, Profile, NotFound } from "@/pages";
+import { Home, AuthPage, Post, Posts, PostForm, Videos, Form, Project, Users, Feedbacks, Profile, Diary, NotFound } from "@/pages";
 import { LoginForm } from "@/features/auth/login/ui/LoginForm"
 import { RegisterForm } from "@/features/auth/register/ui/RegisterForm";
 
@@ -26,6 +26,7 @@ export const App: React.FC = () => {
                             <Route path="/users" element={<Users/>}/>
                             <Route path="/feedback" element={<Feedbacks/>}/>
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/diary" element={<Diary />} />
 
 
                             <Route path="/auth" element={<AuthPage/>}>

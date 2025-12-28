@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaArrowLeft, FaArrowRight, FaEnvelope, FaUser, FaUsers, FaPlusSquare } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaEnvelope, FaUser, FaUsers, FaPlusSquare, FaBook } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { isAdminOrModerator, isAdmin } from '@/shared/lib/permissions';
@@ -12,6 +12,7 @@ interface SidebarProps {
 
 const allNavLinks = [
     { to: '/profile', label: 'Профиль', icon: FaUser, check: () => true },
+    { to: '/diary', label: 'Дневник', icon: FaBook, check: () => true },
     { to: '/post', label: 'Создать статью', icon: FaPlusSquare, check: isAdminOrModerator },
     { to: '/users', label: 'Пользователи', icon: FaUsers, check: isAdmin },
     { to: '/feedback', label: 'Заявки', icon: FaEnvelope, check: isAdmin },

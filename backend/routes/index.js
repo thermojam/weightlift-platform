@@ -6,5 +6,6 @@ router.use('/auth', require('./auth'))
 router.use('/posts', require('./post'))
 router.use('/users', require('./user'))
 router.use('/feedback', require('./feedback'))
+router.use('/tonnage', require('./tonnage'))
 
 module.exports = router

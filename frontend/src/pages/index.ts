@@ -10,3 +10,4 @@ export * from './Users';
 export * from './Feedbacks';
 export * from './NotFound';
 export * from './Profile';
+export * from './Diary';
