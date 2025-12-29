@@ -1,7 +1,7 @@
 import React from 'react';
-import type { IComment } from '@/types';
-import { Comment } from '@/entities/Comment';
-import { CommentForm } from '@/entities/CommentForm';
+import type { IComment } from '@/entities/Comment/model/types';
+import { Comment } from '@/entities/Comment/ui/Comment.tsx';
+import { CommentForm } from '@/entities/Comment/ui/CommentForm.tsx';
 
 interface CommentsProps {
     comments: IComment[];

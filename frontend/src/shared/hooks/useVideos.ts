@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useDebounce } from '@/shared/lib/useDebounce';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 type YouTubeVideo = {
     id: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from "@/shared/lib/utils"
+import { cn } from "@/shared/hooks/utils"
 
 const textareaVariants = {
     default: "w-full bg-slate-700 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500",

@@ -10,7 +10,7 @@ import { RegisterForm } from "@/features/auth/register/ui/RegisterForm";
 export const App: React.FC = () => {
     return (
         <Router>
-            <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden">
+            <div className="flex flex-col h-screen text-foreground overflow-hidden">
                 <Navbar/>
                 <main className="flex-1 content-gradient overflow-hidden flex flex-col min-h-0">
                     <div className="flex-1 overflow-y-auto hide-scrollbar">
@@ -27,7 +27,6 @@ export const App: React.FC = () => {
                             <Route path="/feedback" element={<Feedbacks/>}/>
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/diary" element={<Diary />} />
-
 
                             <Route path="/auth" element={<AuthPage/>}>
                                 <Route index element={<Navigate to="login" replace/>}/>

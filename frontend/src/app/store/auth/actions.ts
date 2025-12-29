@@ -1,7 +1,7 @@
 import type { AppDispatch } from '@/app/store';
 import { apiClient } from '@/shared/api';
 import { AUTH_ACTION_TYPES } from './types';
-import type { IUser } from '@/types';
+import type { IUser } from '@/entities/User/model/types.ts';
 
 export const setUser = (user: IUser | null) => ({
     type: AUTH_ACTION_TYPES.SET_USER,

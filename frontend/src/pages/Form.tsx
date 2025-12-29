@@ -2,7 +2,7 @@ import React from 'react';
 import { IMaskInput } from 'react-imask';
 import { FaArrowUp } from 'react-icons/fa';
 import { Button, Input, Toast } from '@/shared/ui';
-import { useFeedbackForm } from '@/shared/lib/useFeedbackForm';
+import { useFeedbackForm } from '@/shared/hooks/useFeedbackForm';
 
 export const Form: React.FC = () => {
     const {
@@ -35,7 +35,7 @@ export const Form: React.FC = () => {
                 </div>
 
                 <div className="max-w-4xl mx-auto">
-                    <div className="bg-[#1c202a]/50 backdrop-blur-sm rounded-3xl shadow-2xl shadow-black/30 p-8 border border-slate-700">
+                    <div className="bg-[#1c202a]/50 border border-[#00aaff]/90 shadow-2xl shadow-[#00aaff]/20 rounded-3xl p-8">
                         <h2 className="text-xl font-bold text-[#00aaff] mb-8 text-center">
                             Форма обратной связи
                         </h2>

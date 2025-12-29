@@ -7,8 +7,8 @@ export const ProgressSection: FC = () => {
     const diaryEntries = useSelector((state: RootState) => state.diary.entries);
 
     return (
-        <div className="lg:col-span-3 bg-slate-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-slate-100 mb-4">График прогресса</h2>
+        <div className="lg:col-span-3 bg-slate-800 p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
+            <h2 className="text-2xl font-bold text-[#00aaff] mb-4">График прогресса</h2>
             {diaryEntries.length > 0 ? (
                 <ProgressChart data={diaryEntries} />
             ) : (

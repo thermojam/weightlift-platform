@@ -1,7 +1,8 @@
 import type { AppDispatch } from '@/app/store';
 import { apiClient } from '@/shared/api';
 import { POST_ACTION_TYPES } from './types';
-import type { IPost, IComment } from '@/types';
+import type { IPost } from '@/entities/Post/model/types';
+import type { IComment } from '@/entities/Comment/model/types';
 
 export const setPosts = (posts: IPost[]) => ({
     type: POST_ACTION_TYPES.SET_POSTS,

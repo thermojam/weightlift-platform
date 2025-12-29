@@ -45,7 +45,7 @@ export const ProgressChart: React.FC<ProgressChartProps> = ({ data }) => {
     });
 
     return (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={500}>
             <LineChart
                 data={formattedData}
                 margin={{ top: 15, right: 30, left: 20,}}

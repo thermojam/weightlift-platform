@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import type { IComment } from '@/types';
-import { Modal } from '@/shared/ui/Modal';
-import { deleteComment, fetchPost } from '@/app/store/posts/actions';
-import { isAdminOrModerator } from '@/shared/lib/permissions';
+import type { IComment } from '@/entities/Comment/model/types';
+import { Modal } from '@/shared/ui/Modal.tsx';
+import { deleteComment, fetchPost } from '@/app/store/posts/actions.ts';
+import { isAdminOrModerator } from '@/shared/hooks/permissions.ts';
 import type { RootState } from '@/app/store';
 import { FaTrash } from 'react-icons/fa';
 

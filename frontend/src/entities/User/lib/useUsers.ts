@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, deleteUser, updateUser, fetchRoles } from '@/app/store/user/actions';
+import { fetchUsers, deleteUser, updateUser, fetchRoles } from '@/app/store/user/actions.ts';
 import type { RootState, AppDispatch } from '@/app/store';
 import type { IUser } from '@/app/store/user/types';
-import { useToast } from '@/shared/lib/useToast';
+import { useToast } from '@/shared/hooks/useToast';
 
 export const useUsers = () => {
     const dispatch: AppDispatch = useDispatch();

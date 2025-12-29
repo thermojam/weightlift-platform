@@ -2,7 +2,7 @@ import React from 'react';
 import DOMPurify from 'dompurify';
 import { Comments } from '@/widgets/Comments';
 import { Loader, Modal, Toast } from '@/shared/ui';
-import { usePost } from '@/shared/lib/usePost';
+import { usePost } from '@/entities/Post/lib/usePost.ts';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
 export const Post: React.FC = () => {

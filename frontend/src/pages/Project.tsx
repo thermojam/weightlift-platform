@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { members } from '@/shared/consts/team';
-import { ProfileCard } from '@/entities/ProfileCard';
+import { ProfileCard } from '@/entities/User/ui/ProfileCard.tsx';
 
 export const Project: React.FC = () => {
     return (

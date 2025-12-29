@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight, FaEnvelope, FaUser, FaUsers, FaPlusSquare, FaBook } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
-import { isAdminOrModerator, isAdmin } from '@/shared/lib/permissions';
+import { isAdminOrModerator, isAdmin } from '@/shared/hooks/permissions';
 
 interface SidebarProps {
     isCollapsed: boolean;

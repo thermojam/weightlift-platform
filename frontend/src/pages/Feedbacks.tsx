@@ -5,7 +5,7 @@ import { Loader } from '@/shared/ui/Loader';
 import { Modal } from '@/shared/ui/Modal';
 import { Toast } from '@/shared/ui/Toast';
 import { AdminLayout } from '@/widgets/AdminLayout';
-import { useFeedbacks } from '@/shared/lib/useFeedbacks';
+import { useFeedbacks } from '@/shared/hooks/useFeedbacks';
 
 export const Feedbacks: React.FC = () => {
     const {
@@ -52,7 +52,7 @@ export const Feedbacks: React.FC = () => {
                         {feedbacks.map((feedback: IFeedback) => (
                             <div
                                 key={feedback.id}
-                                className="p-4 grid grid-cols-6 gap-2 items-center bg-[#3C4254]/90"
+                                className="p-4 rounded-lg grid grid-cols-6 gap-2 items-center bg-cyan-950"
                             >
                                 <div className="text-slate-100 font-medium">{feedback.fullName}</div>
                                 <div className="text-slate-100">{feedback.phone}</div>

@@ -3,7 +3,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import type { IUser } from '@/app/store/user/types';
 import { Loader, Modal, Toast } from '@/shared/ui';
 import { AdminLayout } from '@/widgets/AdminLayout';
-import { useUsers } from '@/shared/lib/useUsers';
+import { useUsers } from '@/entities/User/lib/useUsers.ts';
 
 export const Users: React.FC = () => {
     const {
@@ -51,7 +51,7 @@ export const Users: React.FC = () => {
                     users.map((user: IUser) => (
                         <div
                             key={user.id}
-                            className="p-4 grid grid-cols-5 gap-4 items-center bg-[#3C4254]/90"
+                            className="p-4 rounded-lg grid grid-cols-5 gap-4 items-center bg-cyan-950 "
                         >
                             <div className="text-slate-100 font-medium">{user.login}</div>
                             <div className="text-slate-100">

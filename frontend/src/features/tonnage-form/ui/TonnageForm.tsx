@@ -3,6 +3,7 @@ import type { FC, ChangeEvent } from 'react';
 import { useAppDispatch } from '@/app/store';
 import { addTonnageEntry } from '@/app/store/diary/actions';
 import type { TonnageEntry } from '@/app/store/diary/types';
+import { Button, Input} from "@/shared/ui";
 import { addTonnage } from '@/shared/api';
 
 const exercises = [
@@ -48,30 +49,31 @@ export const TonnageForm: FC = () => {
     };
 
     return (
-        <div className="lg:col-span-2 bg-slate-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-slate-100 mb-4">Дневные показатели</h2>
+        <div className="lg:col-span-2 bg-slate-800 p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
+            <h2 className="text-2xl font-bold text-[#00aaff] mb-4">Дневные показатели</h2>
             <div className="space-y-4">
                 {exercises.map(ex => (
                     <div key={ex.name}>
                         <label htmlFor={ex.name} className="block text-sm font-medium text-slate-300">{ex.label}</label>
-                        <div className="mt-1 flex">
-                            <input
+                        <div className="mt-1 flex gap-x-1">
+                            <Input
+                                className=" [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                variant="form"
                                 type="number"
                                 id={ex.name}
                                 name={ex.name}
                                 value={tonnage[ex.name] || ''}
                                 onChange={handleTonnageChange}
                                 placeholder="Тоннаж (кг)"
-                                className="block w-full bg-slate-700 border border-slate-600 rounded-l-md shadow-sm py-2 px-3 text-slate-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                 disabled={isSubmitting[ex.name]}
                             />
-                            <button
+                            <Button
+                                variant="outline"
                                 onClick={() => handleSingleTonnageSubmit(ex.name)}
-                                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-r-md disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled={!tonnage[ex.name] || isSubmitting[ex.name]}
                             >
                                 {isSubmitting[ex.name] ? '...' : '✓'}
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 ))}

@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Loader, Toast  } from '@/shared/ui';
-import { useToast } from '@/shared/lib/useToast';
+import { useToast } from '@/shared/hooks/useToast';
 import { fetchPost, addPost, updatePost } from '@/app/store/posts/actions';
 import type { RootState } from '@/app/store';
 

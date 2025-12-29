@@ -1,4 +1,4 @@
-import type { IUser } from '@/types';
+import type { IUser } from '@/entities/User/model/types';
 
 export interface AuthState {
     user: IUser | null;
