@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts } from '@/app/store/posts/actions';
-import { useDebounce } from '@/shared/lib/useDebounce';
+import { fetchPosts } from '@/app/store/posts/actions.ts';
+import { useDebounce } from '@/shared/hooks/useDebounce.ts';
 import type { RootState } from '@/app/store';
 
 export const usePosts = (searchQuery: string) => {

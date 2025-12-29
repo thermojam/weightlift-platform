@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader } from '@/shared/ui/Loader';
-import { useVideos } from '@/shared/lib/useVideos';
+import { useVideos } from '@/shared/hooks/useVideos';
 
 export const Videos: React.FC = () => {
     const {

@@ -1,4 +1,5 @@
-import type { IPost, IComment } from '@/types';
+import type { IPost } from '@/entities/Post/model/types';
+import type { IComment } from '@/entities/Comment/model/types';
 
 export interface PostState {
     posts: IPost[];

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFeedbacks, deleteFeedback } from '@/app/store/feedback/actions';
 import type { RootState, AppDispatch } from '@/app/store';
-import { useToast } from '@/shared/lib/useToast';
+import { useToast } from '@/shared/hooks/useToast';
 
 export const useFeedbacks = () => {
     const dispatch: AppDispatch = useDispatch();

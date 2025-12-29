@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Loader } from '@/shared/ui/Loader';
-import { PostCard } from '@/widgets/PostCard';
-import { usePosts } from '@/shared/lib/usePosts';
+import { PostCard } from '@/entities/Post/ui/PostCard.tsx';
+import { usePosts } from '@/entities/Post/lib/usePosts.ts';
 import { FaSearch } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 

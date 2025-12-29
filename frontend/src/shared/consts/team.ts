@@ -1,11 +1,11 @@
-import type { Member } from '@/entities/ProfileCard';
+import type { Member } from '@/entities/User/ui/ProfileCard.tsx';
 
 export const members: Member[] = [
     {
         name: 'Андрей Павлухин',
         handle: '@Weightlifting1989',
         link: 'https://t.me/Weightlifting1989',
-        avatar: 'https://yt3.googleusercontent.com/f2RsrRclaF6dhvB18fSQ9JwwTiKtnxlzO4qRnfhamy4mBQTRPRxQEdZf8FqDxUexWTOK8mXmCcE=s900-c-k-c0x00ffffff-no-rj',
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ_suDt1P936akW3wjP2-Oa11UCf5gDDiarw&s',
         description:
             'Опытный специалист с многолетней практикой в области спортивных тренировок и реабилитации. Помогает каждому участнику достигать личных целей, разрабатывая индивидуальные программы и поддерживая мотивацию на всех этапах.',
     },

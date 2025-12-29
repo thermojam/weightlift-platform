@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addComment, fetchPost } from '@/app/store/posts/actions';
+import { addComment, fetchPost } from '@/app/store/posts/actions.ts';
 import { Button } from '@/shared/ui';
 import type { RootState } from '@/app/store';
 

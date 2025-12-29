@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { IPost } from '@/types';
+import type { IPost } from '@/entities/Post/model/types.ts';
 
 interface PostCardProps {
     post: IPost;

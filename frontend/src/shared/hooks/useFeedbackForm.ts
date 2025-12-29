@@ -2,7 +2,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { apiClient } from '@/shared/api';
-import { useToast } from '@/shared/lib/useToast';
+import { useToast } from '@/shared/hooks/useToast';
 
 const schema = yup.object({
     fullName: yup

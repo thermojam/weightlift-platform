@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPost, deletePost } from '@/app/store/posts/actions';
-import { isAdminOrModerator } from '@/shared/lib/permissions';
-import { useToast } from '@/shared/lib/useToast';
+import { fetchPost, deletePost } from '@/app/store/posts/actions.ts';
+import { isAdminOrModerator } from '@/shared/hooks/permissions.ts';
+import { useToast } from '@/shared/hooks/useToast.ts';
 import type { RootState } from '@/app/store';
 
 export const usePost = () => {
