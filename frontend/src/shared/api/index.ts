@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { TonnageEntry } from '@/app/store/diary/types';
+import type {TonnageEntry} from '@/app/store/diary/types';
 
 export const apiClient = axios.create({
     baseURL: '/api',
@@ -21,7 +21,7 @@ export const addTonnage = async (entry: TonnageEntry) => {
 const AI_API_URL = '/ai';
 
 export const getAiResponse = async (message: string) => {
-    const response = await apiClient.post(AI_API_URL, { message });
+    const response = await apiClient.post(AI_API_URL, {message});
     return response.data;
 };
 

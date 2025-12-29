@@ -1,9 +1,9 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
-import { Comments } from '@/widgets/Comments';
-import { Loader, Modal, Toast } from '@/shared/ui';
-import { usePost } from '@/entities/Post/lib/usePost.ts';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import {Comments} from '@/widgets/Comments';
+import {Loader, Modal, Toast} from '@/shared/ui';
+import {usePost} from '@/entities/Post/lib/usePost.ts';
+import {FaEdit, FaTrash} from 'react-icons/fa';
 
 export const Post: React.FC = () => {
     const {
@@ -21,7 +21,7 @@ export const Post: React.FC = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-[calc(100vh-160px)]">
-                <Loader label="Загружаем статью..." />
+                <Loader label="Загружаем статью..."/>
             </div>
         );
     }
@@ -46,26 +46,26 @@ export const Post: React.FC = () => {
                                 className="text-[#00aaff] hover:text-[#0088cc] transition-colors p-1"
                                 title="Редактировать"
                             >
-                                <FaEdit size={24} />
+                                <FaEdit size={24}/>
                             </button>
                             <button
                                 onClick={() => setConfirmOpen(true)}
                                 className="text-red-400 hover:text-red-300 transition-colors p-1"
                                 title="Удалить"
                             >
-                                <FaTrash size={20} />
+                                <FaTrash size={20}/>
                             </button>
                         </div>
                     )}
                 </div>
-                <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-t-lg mb-8" />
+                <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-t-lg mb-8"/>
                 <h1 className="text-4xl font-bold text-slate-100 mb-4">{post.title}</h1>
                 <div
                     className="text-slate-300 prose prose-invert prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
+                    dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.content)}}
                 />
             </div>
-            <Comments comments={post.comments} postId={post.id} />
+            <Comments comments={post.comments} postId={post.id}/>
             <Modal
                 isOpen={confirmOpen}
                 title="Удаление статьи"
@@ -79,7 +79,7 @@ export const Post: React.FC = () => {
                     handleDelete();
                 }}
             />
-            {toast && <Toast message={toast.message} type={toast.type} />}
+            {toast && <Toast message={toast.message} type={toast.type}/>}
         </div>
     );
 };

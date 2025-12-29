@@ -1,5 +1,5 @@
-import { ADD_TONNAGE_ENTRY, SET_TONNAGE_ENTRIES } from './types';
-import type { DiaryState, DiaryActionTypes } from './types';
+import {ADD_TONNAGE_ENTRY, SET_TONNAGE_ENTRIES} from './types';
+import type {DiaryState, DiaryActionTypes} from './types';
 
 const initialState: DiaryState = {
     entries: [],

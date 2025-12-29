@@ -1,11 +1,11 @@
 import React from 'react';
-import { FaEnvelope, FaTrash } from 'react-icons/fa';
-import type { IFeedback } from '@/app/store/feedback/types';
-import { Loader } from '@/shared/ui/Loader';
-import { Modal } from '@/shared/ui/Modal';
-import { Toast } from '@/shared/ui/Toast';
-import { AdminLayout } from '@/widgets/AdminLayout';
-import { useFeedbacks } from '@/shared/hooks/useFeedbacks';
+import {FaEnvelope, FaTrash} from 'react-icons/fa';
+import type {IFeedback} from '@/app/store/feedback/types';
+import {Loader} from '@/shared/ui/Loader';
+import {Modal} from '@/shared/ui/Modal';
+import {Toast} from '@/shared/ui/Toast';
+import {AdminLayout} from '@/widgets/AdminLayout';
+import {useFeedbacks} from '@/shared/hooks/useFeedbacks';
 
 export const Feedbacks: React.FC = () => {
     const {
@@ -24,7 +24,7 @@ export const Feedbacks: React.FC = () => {
     if (isLoading && feedbacks.length === 0) {
         return (
             <div className="flex items-center justify-center min-h-[calc(100vh-160px)]">
-                <Loader label="Загружаем заявки..." />
+                <Loader label="Загружаем заявки..."/>
             </div>
         );
     }
@@ -36,7 +36,7 @@ export const Feedbacks: React.FC = () => {
             <div className="space-y-4 max-w-6xl mx-auto">
                 {feedbacks.length === 0 && !isLoading ? (
                     <div className="text-center text-slate-400 py-8">
-                        <FaEnvelope size={48} className="mx-auto mb-4 opacity-50" />
+                        <FaEnvelope size={48} className="mx-auto mb-4 opacity-50"/>
                         <p>Заявок пока нет</p>
                     </div>
                 ) : (
@@ -70,7 +70,7 @@ export const Feedbacks: React.FC = () => {
                                         className="text-red-400 hover:text-red-300 transition-colors p-1"
                                         title="Удалить заявку"
                                     >
-                                        <FaTrash />
+                                        <FaTrash/>
                                     </button>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@ export const Feedbacks: React.FC = () => {
                 onClose={() => setConfirmId(null)}
                 onConfirm={handleDeleteConfirm}
             />
-            {toast && <Toast message={toast.message} type={toast.type} />}
+            {toast && <Toast message={toast.message} type={toast.type}/>}
         </AdminLayout>
     );
 };

@@ -1,14 +1,14 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
-import { login } from '@/app/store/auth/actions';
-import { useAppDispatch } from '@/app/store';
-import type { RootState } from '@/app/store';
-import { Button, Input } from '@/shared/ui';
-import type { ILoginForm } from '@/features/auth/types';
+import {useSelector} from 'react-redux';
+import {login} from '@/app/store/auth/actions';
+import {useAppDispatch} from '@/app/store';
+import type {RootState} from '@/app/store';
+import {Button, Input} from '@/shared/ui';
+import type {ILoginForm} from '@/features/auth/types';
 
 const schema = yup.object({
     login: yup.string().required('Логин обязателен'),
@@ -24,7 +24,7 @@ export const LoginForm: React.FC = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm<ILoginForm>({
         resolver: yupResolver(schema),
     });

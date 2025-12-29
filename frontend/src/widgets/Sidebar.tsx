@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaArrowLeft, FaArrowRight, FaEnvelope, FaUser, FaUsers, FaPlusSquare, FaBook } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import type { RootState } from '@/app/store';
-import { isAdminOrModerator, isAdmin } from '@/shared/hooks/permissions';
+import {NavLink} from 'react-router-dom';
+import {FaArrowLeft, FaArrowRight, FaEnvelope, FaUser, FaUsers, FaPlusSquare, FaBook} from 'react-icons/fa';
+import {useSelector} from 'react-redux';
+import type {RootState} from '@/app/store';
+import {isAdminOrModerator, isAdmin} from '@/shared/hooks/permissions';
 
 interface SidebarProps {
     isCollapsed: boolean;
@@ -11,14 +11,14 @@ interface SidebarProps {
 }
 
 const allNavLinks = [
-    { to: '/profile', label: 'Профиль', icon: FaUser, check: () => true },
-    { to: '/diary', label: 'Дневник', icon: FaBook, check: () => true },
-    { to: '/post', label: 'Создать статью', icon: FaPlusSquare, check: isAdminOrModerator },
-    { to: '/users', label: 'Пользователи', icon: FaUsers, check: isAdmin },
-    { to: '/feedback', label: 'Заявки', icon: FaEnvelope, check: isAdmin },
+    {to: '/profile', label: 'Профиль', icon: FaUser, check: () => true},
+    {to: '/diary', label: 'Дневник', icon: FaBook, check: () => true},
+    {to: '/post', label: 'Создать статью', icon: FaPlusSquare, check: isAdminOrModerator},
+    {to: '/users', label: 'Пользователи', icon: FaUsers, check: isAdmin},
+    {to: '/feedback', label: 'Заявки', icon: FaEnvelope, check: isAdmin},
 ];
 
-export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
+export const Sidebar: React.FC<SidebarProps> = ({isCollapsed, onToggleCollapse}) => {
     const user = useSelector((state: RootState) => state.auth.user);
 
     const visibleNavLinks = allNavLinks.filter(link => link.check(user?.role));
@@ -33,16 +33,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
                 onClick={onToggleCollapse}
                 className="flex items-center justify-center gap-2 text-slate-100 hover:text-slate-300 transition-colors mb-4 h-10 w-full"
             >
-                {isCollapsed ? <FaArrowRight size={20} /> : <FaArrowLeft size={16} />}
+                {isCollapsed ? <FaArrowRight size={20}/> : <FaArrowLeft size={16}/>}
                 {!isCollapsed && <span>Свернуть</span>}
             </button>
 
             <nav className="flex flex-col gap-2">
-                {visibleNavLinks.map(({ to, label, icon: Icon }) => (
+                {visibleNavLinks.map(({to, label, icon: Icon}) => (
                     <NavLink
                         key={to}
                         to={to}
-                        className={({ isActive }) =>
+                        className={({isActive}) =>
                             `flex items-center gap-3 p-3 rounded-lg transition-colors ${
                                 isActive
                                     ? 'bg-slate-700 text-slate-100 font-semibold'
@@ -51,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
                         }
                         title={isCollapsed ? label : undefined}
                     >
-                        <Icon size={isCollapsed ? 24 : 16} />
+                        <Icon size={isCollapsed ? 24 : 16}/>
                         {!isCollapsed && <span>{label}</span>}
                     </NavLink>
                 ))}

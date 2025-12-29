@@ -1,7 +1,7 @@
-import type { AppDispatch } from '@/app/store';
-import { apiClient } from '@/shared/api';
-import { AUTH_ACTION_TYPES } from './types';
-import type { IUser } from '@/entities/User/model/types.ts';
+import type {AppDispatch} from '@/app/store';
+import {apiClient} from '@/shared/api';
+import {AUTH_ACTION_TYPES} from './types';
+import type {IUser} from '@/entities/User/model/types.ts';
 
 export const setUser = (user: IUser | null) => ({
     type: AUTH_ACTION_TYPES.SET_USER,
@@ -27,15 +27,17 @@ export const login = (login: string, password: string) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const res = await apiClient.post<{ user: IUser }>('/auth/login', { login, password });
+            const res = await apiClient.post<{ user: IUser }>('/auth/login', {login, password});
             dispatch(setUser(res.data.user));
             dispatch(setLoading(false));
-            return { success: true };
+            return {success: true};
         } catch (e: unknown) {
-            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка авторизации';
+            const error = (e as {
+                response?: { data?: { error?: string } }
+            })?.response?.data?.error || 'Ошибка авторизации';
             dispatch(setError(error));
             dispatch(setLoading(false));
-            return { success: false, error };
+            return {success: false, error};
         }
     };
 };
@@ -45,15 +47,17 @@ export const register = (login: string, password: string) => {
         try {
             dispatch(setLoading(true));
             dispatch(setError(null));
-            const res = await apiClient.post<{ user: IUser }>('/auth/register', { login, password });
+            const res = await apiClient.post<{ user: IUser }>('/auth/register', {login, password});
             dispatch(setUser(res.data.user));
             dispatch(setLoading(false));
-            return { success: true };
+            return {success: true};
         } catch (e: unknown) {
-            const error = (e as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Ошибка регистрации';
+            const error = (e as {
+                response?: { data?: { error?: string } }
+            })?.response?.data?.error || 'Ошибка регистрации';
             dispatch(setError(error));
             dispatch(setLoading(false));
-            return { success: false, error };
+            return {success: false, error};
         }
     };
 };

@@ -1,14 +1,14 @@
 import React from 'react';
-import type { IComment } from '@/entities/Comment/model/types';
-import { Comment } from '@/entities/Comment/ui/Comment.tsx';
-import { CommentForm } from '@/entities/Comment/ui/CommentForm.tsx';
+import type {IComment} from '@/entities/Comment/model/types';
+import {Comment} from '@/entities/Comment/ui/Comment.tsx';
+import {CommentForm} from '@/entities/Comment/ui/CommentForm.tsx';
 
 interface CommentsProps {
     comments: IComment[];
     postId: string;
 }
 
-export const Comments: React.FC<CommentsProps> = ({ comments, postId }) => {
+export const Comments: React.FC<CommentsProps> = ({comments, postId}) => {
     return (
         <div className="mt-8">
             <h2 className="text-2xl font-bold text-slate-100 mb-4">Комментарии</h2>
@@ -17,7 +17,7 @@ export const Comments: React.FC<CommentsProps> = ({ comments, postId }) => {
                     <Comment key={comment.id} comment={comment} postId={postId}/>
                 ))}
             </div>
-            <CommentForm postId={postId} />
+            <CommentForm postId={postId}/>
         </div>
     );
 };

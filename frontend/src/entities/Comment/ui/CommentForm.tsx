@@ -1,12 +1,12 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addComment, fetchPost } from '@/app/store/posts/actions.ts';
-import { Button } from '@/shared/ui';
-import type { RootState } from '@/app/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {addComment, fetchPost} from '@/app/store/posts/actions.ts';
+import {Button} from '@/shared/ui';
+import type {RootState} from '@/app/store';
 
 interface CommentFormProps {
     postId: string;
@@ -24,14 +24,14 @@ interface CommentFormData {
     content: string;
 }
 
-export const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
+export const CommentForm: React.FC<CommentFormProps> = ({postId}) => {
     const dispatch = useDispatch<any>();
     const navigate = useNavigate();
     const user = useSelector((state: RootState) => state.auth.user);
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
         reset,
     } = useForm<CommentFormData>({
         resolver: yupResolver(schema),

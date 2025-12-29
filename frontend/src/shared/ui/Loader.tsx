@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/shared/hooks/utils";
+import {cn} from "@/shared/hooks/utils";
 
 type LoaderProps = {
     size?: "sm" | "md" | "lg";
@@ -13,7 +13,7 @@ const sizeMap: Record<NonNullable<LoaderProps["size"]>, string> = {
     lg: "w-14 h-14",
 };
 
-export const Loader: React.FC<LoaderProps> = ({ size = "md", className, label }) => {
+export const Loader: React.FC<LoaderProps> = ({size = "md", className, label}) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-none">
             <div className={cn("flex flex-col items-center gap-2 text-slate-300", className)}>

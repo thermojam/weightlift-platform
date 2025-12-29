@@ -1,17 +1,26 @@
-import { createStore, combineReducers, applyMiddleware, compose, type AnyAction, type Store, type Action, type Reducer } from 'redux';
-import { useDispatch } from 'react-redux';
-import type { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { thunk } from 'redux-thunk';
-import { authReducer } from './auth/reducer';
-import type { AuthState, AuthAction } from './auth/types';
-import { postReducer } from './posts/reducer';
-import type { PostState, PostAction } from './posts/types';
-import { userReducer } from './user/reducer';
-import type { UserState, UserAction } from './user/types';
-import { feedbackReducer } from './feedback/reducer';
-import type { IFeedbackState } from './feedback/types';
-import { diaryReducer } from './diary/reducer';
-import type { DiaryState, DiaryActionTypes } from './diary/types';
+import {
+    createStore,
+    combineReducers,
+    applyMiddleware,
+    compose,
+    type AnyAction,
+    type Store,
+    type Action,
+    type Reducer
+} from 'redux';
+import {useDispatch} from 'react-redux';
+import type {ThunkAction, ThunkDispatch} from 'redux-thunk';
+import {thunk} from 'redux-thunk';
+import {authReducer} from './auth/reducer';
+import type {AuthState, AuthAction} from './auth/types';
+import {postReducer} from './posts/reducer';
+import type {PostState, PostAction} from './posts/types';
+import {userReducer} from './user/reducer';
+import type {UserState, UserAction} from './user/types';
+import {feedbackReducer} from './feedback/reducer';
+import type {IFeedbackState} from './feedback/types';
+import {diaryReducer} from './diary/reducer';
+import type {DiaryState, DiaryActionTypes} from './diary/types';
 
 export interface RootState {
     auth: AuthState;

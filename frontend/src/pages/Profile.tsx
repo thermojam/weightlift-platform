@@ -1,17 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { FaEdit } from 'react-icons/fa';
-import type { RootState } from '@/app/store';
-import { Loader } from '@/shared/ui/Loader';
-import { AdminLayout } from '@/widgets/AdminLayout';
+import {useSelector} from 'react-redux';
+import {FaEdit} from 'react-icons/fa';
+import type {RootState} from '@/app/store';
+import {Loader} from '@/shared/ui/Loader';
+import {AdminLayout} from '@/widgets/AdminLayout';
 
 export const Profile: React.FC = () => {
-    const { user, isLoading } = useSelector((state: RootState) => state.auth);
+    const {user, isLoading} = useSelector((state: RootState) => state.auth);
 
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-[calc(100vh-160px)]">
-                <Loader label="Загружаем профиль..." />
+                <Loader label="Загружаем профиль..."/>
             </div>
         );
     }
@@ -32,7 +32,7 @@ export const Profile: React.FC = () => {
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-semibold text-slate-100">Профиль</h2>
                     <button className="text-[#00aaff] hover:text-[#0088cc] transition-colors p-1">
-                        <FaEdit size={20} />
+                        <FaEdit size={20}/>
                     </button>
                 </div>
 

@@ -1,8 +1,8 @@
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm, Controller} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { apiClient } from '@/shared/api';
-import { useToast } from '@/shared/hooks/useToast';
+import {apiClient} from '@/shared/api';
+import {useToast} from '@/shared/hooks/useToast';
 
 const schema = yup.object({
     fullName: yup
@@ -58,7 +58,7 @@ export const useFeedbackForm = () => {
         register,
         control,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: {errors, isSubmitting},
         setValue,
         watch,
         reset,
@@ -75,7 +75,7 @@ export const useFeedbackForm = () => {
         },
     });
 
-    const { toast, showToast } = useToast();
+    const {toast, showToast} = useToast();
 
     const height = watch('height');
     const weight = watch('weight');
@@ -99,11 +99,11 @@ export const useFeedbackForm = () => {
         } else {
             newValue = Math.max(30, Math.min(300, current + delta));
         }
-        setValue(field, newValue, { shouldValidate: true });
+        setValue(field, newValue, {shouldValidate: true});
     };
 
     const toggleGender = () => {
-        setValue('gender', gender === 'male' ? 'female' : 'male', { shouldValidate: true });
+        setValue('gender', gender === 'male' ? 'female' : 'male', {shouldValidate: true});
     };
 
     const formError = errors.fullName?.message || errors.phone?.message || errors.city?.message || errors.discipline?.message || errors.height?.message || errors.weight?.message || errors.gender?.message;

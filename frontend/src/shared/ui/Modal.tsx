@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "./Button";
-import { cn } from "@/shared/hooks/utils";
+import {Button} from "./Button";
+import {cn} from "@/shared/hooks/utils";
 
 type ModalProps = {
     isOpen: boolean;

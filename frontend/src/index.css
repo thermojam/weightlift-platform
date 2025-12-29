@@ -21,11 +21,6 @@
     display: none;
 }
 
-/*@font-face {*/
-/*    font-family: Arounder;*/
-/*    src: url("assets/fonts/Arounder.otf") format("otf");*/
-/*}*/
-
 @layer base {
     html, body {
         height: 100%;

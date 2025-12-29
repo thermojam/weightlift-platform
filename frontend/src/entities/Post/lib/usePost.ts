@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchPost, deletePost } from '@/app/store/posts/actions.ts';
-import { isAdminOrModerator } from '@/shared/hooks/permissions.ts';
-import { useToast } from '@/shared/hooks/useToast.ts';
-import type { RootState } from '@/app/store';
+import {useEffect, useState} from 'react';
+import {useParams, useNavigate} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchPost, deletePost} from '@/app/store/posts/actions.ts';
+import {isAdminOrModerator} from '@/shared/hooks/permissions.ts';
+import {useToast} from '@/shared/hooks/useToast.ts';
+import type {RootState} from '@/app/store';
 
 export const usePost = () => {
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ export const usePost = () => {
     const isLoading = useSelector((state: RootState) => state.posts.isLoading);
     const error = useSelector((state: RootState) => state.posts.error);
 
-    const { toast, showToast } = useToast();
+    const {toast, showToast} = useToast();
     const [confirmOpen, setConfirmOpen] = useState(false);
 
     useEffect(() => {
