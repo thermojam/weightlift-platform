@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React, {useEffect} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, Loader, Toast  } from '@/shared/ui';
-import { useToast } from '@/shared/hooks/useToast';
-import { fetchPost, addPost, updatePost } from '@/app/store/posts/actions';
-import type { RootState } from '@/app/store';
+import {useSelector, useDispatch} from 'react-redux';
+import {Button, Loader, Toast} from '@/shared/ui';
+import {useToast} from '@/shared/hooks/useToast';
+import {fetchPost, addPost, updatePost} from '@/app/store/posts/actions';
+import type {RootState} from '@/app/store';
 
 const schema = yup.object({
     title: yup
@@ -32,19 +32,19 @@ interface PostFormData {
 }
 
 export const PostForm: React.FC = () => {
-    const { id } = useParams<{ id?: string }>();
+    const {id} = useParams<{ id?: string }>();
     const navigate = useNavigate();
     const dispatch = useDispatch<any>();
     const post = useSelector((state: RootState) => state.posts.post);
     const error = useSelector((state: RootState) => state.posts.error);
     const isLoading = useSelector((state: RootState) => state.posts.isLoading);
     const isEditing = !!id;
-    const { toast, showToast } = useToast();
+    const {toast, showToast} = useToast();
 
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
         setValue,
     } = useForm<PostFormData>({
         resolver: yupResolver(schema),
@@ -93,7 +93,7 @@ export const PostForm: React.FC = () => {
     if (isEditing && isLoading && !post) {
         return (
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <Loader label="Загружаем статью..." />
+                <Loader label="Загружаем статью..."/>
             </div>
         );
     }
@@ -149,7 +149,7 @@ export const PostForm: React.FC = () => {
                 </div>
                 <Button variant="outline" type="submit">{isEditing ? 'Сохранить' : 'Создать'}</Button>
             </form>
-            {toast && <Toast message={toast.message} type={toast.type} />}
+            {toast && <Toast message={toast.message} type={toast.type}/>}
         </div>
     );
 };

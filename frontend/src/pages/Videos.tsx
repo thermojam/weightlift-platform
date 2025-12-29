@@ -1,6 +1,6 @@
 import React from 'react';
-import { Loader } from '@/shared/ui/Loader';
-import { useVideos } from '@/shared/hooks/useVideos';
+import {Loader} from '@/shared/ui/Loader';
+import {useVideos} from '@/shared/hooks/useVideos';
 
 export const Videos: React.FC = () => {
     const {
@@ -32,7 +32,7 @@ export const Videos: React.FC = () => {
             <div className="flex-1 overflow-y-auto hide-scrollbar">
                 {isLoading ? (
                     <div className="flex items-center justify-center py-12">
-                        <Loader label="Загружаем видео..." />
+                        <Loader label="Загружаем видео..."/>
                     </div>
                 ) : error ? (
                     <div className="text-red-400 text-center py-10">{error}</div>
@@ -72,7 +72,8 @@ export const Videos: React.FC = () => {
 
             {selectedVideo && (
                 <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-700 rounded-lg shadow-2xl w-full max-w-5xl overflow-hidden">
+                    <div
+                        className="bg-slate-900 border border-slate-700 rounded-lg shadow-2xl w-full max-w-5xl overflow-hidden">
                         <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
                             <div className="text-slate-100 font-semibold line-clamp-2">
                                 {selectedVideo.title}

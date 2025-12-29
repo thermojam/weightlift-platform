@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from "@/shared/hooks/utils"
+import {cn} from "@/shared/hooks/utils"
 
 const inputVariants = {
     default: "w-full bg-slate-700 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500",
@@ -12,7 +12,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, variant = 'default', ...props }, ref) => {
+    ({className, variant = 'default', ...props}, ref) => {
         return (
             <input
                 className={cn(inputVariants[variant], className)}
@@ -25,4 +25,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
 Input.displayName = 'Input';
 
-export { Input };
+export {Input};

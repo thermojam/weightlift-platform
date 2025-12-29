@@ -1,12 +1,12 @@
-import { useState } from "react";
-import type { FC, FormEvent, ChangeEvent } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/app/store";
-import { getAiResponse } from "@/shared/api";
-import { usePosts } from "@/entities/Post/lib/usePosts";
-import { useVideos } from "@/shared/hooks/useVideos";
-import { Button, Input } from "@/shared/ui";
-import { AI_ASSISTANT_RULES } from "@/shared/consts/aiAssistantRules";
+import {useState} from "react";
+import type {FC, FormEvent, ChangeEvent} from "react";
+import {useSelector} from "react-redux";
+import type {RootState} from "@/app/store";
+import {getAiResponse} from "@/shared/api";
+import {usePosts} from "@/entities/Post/lib/usePosts";
+import {useVideos} from "@/shared/hooks/useVideos";
+import {Button, Input} from "@/shared/ui";
+import {AI_ASSISTANT_RULES} from "@/shared/consts/aiAssistantRules";
 
 interface ChatMessage {
     sender: "user" | "ai";
@@ -20,8 +20,8 @@ export const AiAssistant: FC = () => {
     const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const { posts } = usePosts("");
-    const { videos } = useVideos();
+    const {posts} = usePosts("");
+    const {videos} = useVideos();
 
     const handleAiMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
         setAiMessage(e.target.value);
@@ -31,7 +31,7 @@ export const AiAssistant: FC = () => {
         e.preventDefault();
         if (!aiMessage.trim()) return;
 
-        const userMessage: ChatMessage = { sender: "user", text: aiMessage };
+        const userMessage: ChatMessage = {sender: "user", text: aiMessage};
         setChatHistory((prev) => [...prev, userMessage]);
         setAiMessage("");
         setIsLoading(true);
@@ -111,7 +111,8 @@ ${formattedDiaryData}
         : "Задайте свой вопрос ..";
 
     return (
-        <div className="lg:col-span-5 bg-slate-800 p-6 rounded-lg shadow-lg mt-8 border border-[#00aaff]/90 shadow-[#00aaff]/20">
+        <div
+            className="lg:col-span-5 bg-slate-800 p-6 rounded-lg shadow-lg mt-8 border border-[#00aaff]/90 shadow-[#00aaff]/20">
             <h2 className="text-2xl font-bold text-[#00aaff] mb-4">
                 Ассистент
             </h2>

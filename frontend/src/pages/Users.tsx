@@ -1,9 +1,9 @@
 import React from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import type { IUser } from '@/app/store/user/types';
-import { Loader, Modal, Toast } from '@/shared/ui';
-import { AdminLayout } from '@/widgets/AdminLayout';
-import { useUsers } from '@/entities/User/lib/useUsers.ts';
+import {FaEdit, FaTrash} from 'react-icons/fa';
+import type {IUser} from '@/app/store/user/types';
+import {Loader, Modal, Toast} from '@/shared/ui';
+import {AdminLayout} from '@/widgets/AdminLayout';
+import {useUsers} from '@/entities/User/lib/useUsers.ts';
 
 export const Users: React.FC = () => {
     const {
@@ -27,7 +27,7 @@ export const Users: React.FC = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-[calc(100vh-160px)]">
-                <Loader label="Загружаем пользователей..." />
+                <Loader label="Загружаем пользователей..."/>
             </div>
         );
     }
@@ -128,7 +128,7 @@ export const Users: React.FC = () => {
                 onClose={() => setConfirmUserId(null)}
                 onConfirm={() => confirmUserId && handleDelete(confirmUserId)}
             />
-            {toast && <Toast message={toast.message} type={toast.type} />}
+            {toast && <Toast message={toast.message} type={toast.type}/>}
         </AdminLayout>
     );
 };

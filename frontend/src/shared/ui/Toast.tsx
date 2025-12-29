@@ -1,13 +1,13 @@
 import React from "react";
-import { cn } from "@/shared/hooks/utils";
-import type { ToastType } from "@/shared/hooks/useToast";
+import {cn} from "@/shared/hooks/utils";
+import type {ToastType} from "@/shared/hooks/useToast";
 
 type ToastProps = {
     message: string;
     type?: ToastType;
 };
 
-export const Toast: React.FC<ToastProps> = ({ message, type = "info" }) => {
+export const Toast: React.FC<ToastProps> = ({message, type = "info"}) => {
     const color =
         type === "success"
             ? "bg-emerald-600"

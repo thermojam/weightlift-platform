@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import type { IComment } from '@/entities/Comment/model/types';
-import { Modal } from '@/shared/ui/Modal.tsx';
-import { deleteComment, fetchPost } from '@/app/store/posts/actions.ts';
-import { isAdminOrModerator } from '@/shared/hooks/permissions.ts';
-import type { RootState } from '@/app/store';
-import { FaTrash } from 'react-icons/fa';
+import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import type {IComment} from '@/entities/Comment/model/types';
+import {Modal} from '@/shared/ui/Modal.tsx';
+import {deleteComment, fetchPost} from '@/app/store/posts/actions.ts';
+import {isAdminOrModerator} from '@/shared/hooks/permissions.ts';
+import type {RootState} from '@/app/store';
+import {FaTrash} from 'react-icons/fa';
 
 interface CommentProps {
     comment: IComment;
     postId: string;
 }
 
-export const Comment: React.FC<CommentProps> = ({ comment, postId }) => {
+export const Comment: React.FC<CommentProps> = ({comment, postId}) => {
     const user = useSelector((state: RootState) => state.auth.user);
     const dispatch = useDispatch<any>();
     const canDelete = isAdminOrModerator(user?.role);
@@ -44,7 +44,7 @@ export const Comment: React.FC<CommentProps> = ({ comment, postId }) => {
                             className="text-red-400 hover:text-red-300 transition-colors p-1"
                             title="Удалить"
                         >
-                            <FaTrash size={16} />
+                            <FaTrash size={16}/>
                         </button>
                     )}
                 </div>

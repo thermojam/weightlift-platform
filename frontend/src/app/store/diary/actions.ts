@@ -1,5 +1,5 @@
-import { ADD_TONNAGE_ENTRY, SET_TONNAGE_ENTRIES } from './types';
-import type { TonnageEntry, DiaryActionTypes } from './types';
+import {ADD_TONNAGE_ENTRY, SET_TONNAGE_ENTRIES} from './types';
+import type {TonnageEntry, DiaryActionTypes} from './types';
 
 export const addTonnageEntry = (entry: TonnageEntry): DiaryActionTypes => ({
     type: ADD_TONNAGE_ENTRY,

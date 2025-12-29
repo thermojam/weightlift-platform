@@ -1,4 +1,4 @@
-import type { Member } from '@/entities/User/ui/ProfileCard.tsx';
+import type {Member} from '@/entities/User/ui/ProfileCard.tsx';
 
 export const members: Member[] = [
     {

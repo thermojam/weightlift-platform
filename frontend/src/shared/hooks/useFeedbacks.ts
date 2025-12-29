@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFeedbacks, deleteFeedback } from '@/app/store/feedback/actions';
-import type { RootState, AppDispatch } from '@/app/store';
-import { useToast } from '@/shared/hooks/useToast';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchFeedbacks, deleteFeedback} from '@/app/store/feedback/actions';
+import type {RootState, AppDispatch} from '@/app/store';
+import {useToast} from '@/shared/hooks/useToast';
 
 export const useFeedbacks = () => {
     const dispatch: AppDispatch = useDispatch();
-    const { feedbacks, isLoading, error } = useSelector((state: RootState) => state.feedback);
+    const {feedbacks, isLoading, error} = useSelector((state: RootState) => state.feedback);
     const [confirmId, setConfirmId] = useState<string | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
-    const { toast, showToast } = useToast();
+    const {toast, showToast} = useToast();
 
     useEffect(() => {
         dispatch(fetchFeedbacks());

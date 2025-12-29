@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaSignOutAlt } from 'react-icons/fa';
-import { logoutUser } from '@/app/store/auth/actions';
-import { useAppDispatch } from '@/app/store';
+import {useNavigate} from 'react-router-dom';
+import {FaSignOutAlt} from 'react-icons/fa';
+import {logoutUser} from '@/app/store/auth/actions';
+import {useAppDispatch} from '@/app/store';
 
-export const LogoutButton: React.FC<{className?: string}> = ({className}) => {
+export const LogoutButton: React.FC<{ className?: string }> = ({className}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export const LogoutButton: React.FC<{className?: string}> = ({className}) => {
 
     return (
         <button onClick={handleLogout} title="Выйти" className={className}>
-            <FaSignOutAlt size={24} />
+            <FaSignOutAlt size={24}/>
         </button>
     );
 };

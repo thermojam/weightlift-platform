@@ -1,14 +1,14 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
-import { register as registerUser } from '@/app/store/auth/actions';
-import { useAppDispatch } from '@/app/store';
-import type { RootState } from '@/app/store';
-import { Button, Input } from '@/shared/ui';
-import type { IRegisterForm } from '@/features/auth/types';
+import {useSelector} from 'react-redux';
+import {register as registerUser} from '@/app/store/auth/actions';
+import {useAppDispatch} from '@/app/store';
+import type {RootState} from '@/app/store';
+import {Button, Input} from '@/shared/ui';
+import type {IRegisterForm} from '@/features/auth/types';
 
 const schema = yup.object({
     login: yup
@@ -33,7 +33,7 @@ export const RegisterForm: React.FC = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm<IRegisterForm>({
         resolver: yupResolver(schema),
     });

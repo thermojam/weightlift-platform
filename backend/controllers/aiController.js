@@ -11,7 +11,6 @@ exports.getAiResponse = async (req, res) => {
         const response = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
-                // Модель заменена на бесплатную и быструю
                 model: 'mistralai/mistral-7b-instruct-v0.2',
                 messages: [{ role: 'user', content: message }],
             },
