@@ -4,3 +4,4 @@ export * from './Textarea';
 export * from './Loader';
 export * from './Modal';
 export * from './Toast';
+export * from './Marquee';
