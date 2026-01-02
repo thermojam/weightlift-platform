@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 secondary: "text-slate-300 btn-skin",
                 destructive: "text-slate-100 bg-red-500 hover:bg-red-600",
                 success: "text-slate-100 bg-green-500 hover:bg-green-600",
-                auth: "w-full p-4 border-none rounded-[50px] bg-gradient-to-r from-[#00aaff] to-[#0088cc] text-white font-bold cursor-pointer",
+                auth: "w-full p-4 rounded-[50px] bg-gradient-to-r from-[#00aaff] to-[#0088cc] text-white font-bold cursor-pointer",
                 ghost: "text-lg font-bold text-slate-400 hover:text-white transition-colors",
                 outline: "border border-[#00aaff] text-[#00aaff] hover:bg-[#00aaff] hover:text-white",
                 link: "text-[#00aaff] underline-offset-4 hover:underline",
