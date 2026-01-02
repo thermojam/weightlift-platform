@@ -58,7 +58,7 @@ export const Post: React.FC = () => {
                         </div>
                     )}
                 </div>
-                <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-t-lg mb-8"/>
+                <img src={post.imageUrl} alt={post.title} className="w-full h-fit object-cover rounded-t-lg mb-8"/>
                 <h1 className="text-4xl font-bold text-slate-100 mb-4">{post.title}</h1>
                 <div
                     className="text-slate-300 prose prose-invert prose-lg max-w-none"

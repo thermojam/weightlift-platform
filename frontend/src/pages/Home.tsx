@@ -6,7 +6,7 @@ import mainImage from '@/assets/images/coach.png';
 
 export const Home: React.FC = () => {
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-0 h-full flex">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-0 h-fit flex">
             <div className="w-full flex items-end">
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full">
                     <div className="text-center md:text-left self-center">
