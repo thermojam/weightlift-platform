@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
     return (
         <header className="header-gradient shadow-lg">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <nav className="flex h-22 items-center justify-between">
+                <nav className="flex h-20 items-center justify-between">
                     <NavLink to="/" className="flex-shrink-0" onClick={(e) => {
                         e.preventDefault();
                         navigate('/');

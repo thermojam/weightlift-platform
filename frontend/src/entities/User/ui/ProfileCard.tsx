@@ -1,6 +1,5 @@
 import React from 'react';
 import {FaTelegram} from 'react-icons/fa';
-import {motion} from 'framer-motion';
 
 export type Member = {
     name: string;
@@ -12,41 +11,25 @@ export type Member = {
 
 interface ProfileCardProps {
     member: Member;
-    index: number;
+    index: number; // index is kept for key purposes, but animation is handled by parent
 }
 
-const cardVariants = {
-    hidden: {opacity: 0, y: 20},
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            delay: i * 0.3,
-            duration: 0.5,
-        },
-    }),
-};
-
-export const ProfileCard: React.FC<ProfileCardProps> = ({member, index}) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({member}) => {
     return (
-        <motion.div
-            custom={index}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            className="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg shadow-black/40 flex flex-col hover:border-[#00aaff] transition-colors duration-300"
+        <div
+            className="group bg-white/5 rounded-lg overflow-hidden shadow-lg border border-white/10 hover:border-cyan-400/50 hover:shadow-cyan-400/10 transition-all duration-300 h-full flex flex-col p-6"
         >
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-4 mb-5">
                 <img src={member.avatar} alt={member.name}
-                     className="w-16 h-16 rounded-full border-2 border-[#00aaff]"/>
-                <div className="flex flex-col">
-                    <span className="text-slate-100 font-bold text-lg">{member.name}</span>
+                     className="w-16 h-16 rounded-full border-2  border-cyan-400/50 group-hover:border-cyan-400 transition-colors duration-300"/>
+                <div>
+                    <h3 className="text-slate-100 font-bold text-lg">{member.name}</h3>
                     {member.link ? (
                         <a
                             href={member.link}
                             target="_blank"
-                            rel="noreferrer"
-                            className="text-[#00aaff] flex items-center gap-1.5 text-sm hover:underline w-fit"
+                            rel="noopener noreferrer"
+                            className="text-cyan-400 flex items-center gap-1.5 text-sm hover:underline w-fit"
                         >
                             <FaTelegram size={16}/> {member.handle}
                         </a>
@@ -56,6 +39,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({member, index}) => {
                 </div>
             </div>
             <p className="text-slate-300 text-sm leading-relaxed flex-grow">{member.description}</p>
-        </motion.div>
+        </div>
     );
 };

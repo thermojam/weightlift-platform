@@ -83,9 +83,9 @@ export const CommentForm: React.FC<CommentFormProps> = ({postId}) => {
                 rows={3}
             />
             {errors.content && (
-                <p className="text-red-400 text-sm mt-1">{errors.content.message}</p>
+                <p className="text-red-400 text-sm mt-2">{errors.content.message}</p>
             )}
-            <Button type="submit" className="mt-2">Отправить</Button>
+            <Button variant="outline" type="submit" className="mt-4">Отправить</Button>
         </form>
     );
 };
