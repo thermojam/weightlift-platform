@@ -14,11 +14,11 @@
 
 @font-face {
     font-family: "ForestSmooth", sans-serif;
-    src: url("./assets/fonts/ForestSmooth.ttf") format("ttf");
+    src: url("@/assets/fonts/ForestSmooth.ttf") format("ttf");
 }
 @font-face {
     font-family: "Nunito", sans-serif;
-    src: url("./assets/fonts/Nunito.ttf") format("ttf");
+    src: url("@/assets/fonts/Nunito.ttf") format("ttf");
 }
 
 @layer base {

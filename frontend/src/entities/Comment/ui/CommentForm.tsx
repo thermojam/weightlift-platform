@@ -56,16 +56,18 @@ export const CommentForm: React.FC<CommentFormProps> = ({postId}) => {
                 <p className="text-slate-400 mb-4 text-center text-sm">
                     Войдите в систему или зарегистрируйтесь, чтобы присоединиться к обсуждению!
                 </p>
-                <div className="flex gap-4 justify-center">
+                <div className="flex gap-2 justify-center">
                     <Button
                         onClick={() => navigate('/auth/login')}
                         variant="primary"
+                        size="sm"
                     >
                         Войти
                     </Button>
                     <Button
                         onClick={() => navigate('/auth/register')}
                         variant="outline"
+                        size="sm"
                     >
                         Зарегистрироваться
                     </Button>
