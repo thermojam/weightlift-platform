@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 .header-gradient {
-    background: linear-gradient(90deg, #1d63ed 0%, #002a8c 100%);
+    background: #002a8c;
 }
 
 .content-gradient {
     background: linear-gradient(269deg, #000 7.91%, #212224 100%);
 }
 
-.footer-gradient {
-    background: linear-gradient(90deg, #1d63ed 0%, #002a8c 100%);
-}
+/*.footer-gradient {*/
+/*    background: #2D404E;*/
+/*}*/
 
 @font-face {
     font-family: "ForestSmooth";

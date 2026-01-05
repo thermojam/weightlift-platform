@@ -12,11 +12,11 @@ interface MarqueeProps {
     speed?: number;
 }
 
-export const Marquee: React.FC<MarqueeProps> = ({ items, speed = 50 }) => {
+export const Marquee: React.FC<MarqueeProps> = ({ items, speed = 30 }) => {
     const marqueeItems = [...items, ...items];
 
     return (
-        <div className="custom-title relative w-full overflow-hidden bg-neutral-900 py-3 md:py-4 shadow-lg cursor-pointer">
+        <div className="custom-title relative w-full overflow-hidden bg-neutral-900 py-3 md:py-8 shadow-lg cursor-pointer">
             <motion.div
                 className="flex whitespace-nowrap"
                 animate={{

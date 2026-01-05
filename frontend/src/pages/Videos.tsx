@@ -2,7 +2,7 @@ import React from 'react';
 import {Loader} from '@/shared/ui/Loader';
 import {useVideos} from '@/shared/hooks/useVideos';
 import {FaSearch} from 'react-icons/fa';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 
 const container = {
     hidden: {opacity: 0},
@@ -18,6 +18,7 @@ const container = {
 const item = {
     hidden: {y: 20, opacity: 0},
     show: {y: 0, opacity: 1},
+    exit: {y: -20, opacity: 0},
 };
 
 export const Videos: React.FC = () => {
@@ -62,10 +63,6 @@ export const Videos: React.FC = () => {
                             </div>
                         ) : error ? (
                             <div className="text-center text-red-400 py-16">{error}</div>
-                        ) : filteredVideos.length === 0 ? (
-                            <div className="text-center text-slate-400 py-16">
-                                {search ? 'Видео не найдено' : 'Видео пока нет'}
-                            </div>
                         ) : (
                             <motion.div
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8"
@@ -73,31 +70,38 @@ export const Videos: React.FC = () => {
                                 initial="hidden"
                                 animate="show"
                             >
-                                {filteredVideos.map((video) => (
-                                    <motion.div variants={item} key={video.id}>
-                                        <button
-                                            onClick={() => setSelectedVideo(video)}
-                                            className="group w-full text-left bg-white/5 rounded-lg overflow-hidden shadow-lg border border-white/10 hover:border-cyan-400/50 hover:shadow-cyan-400/10 transition-all duration-300 h-full flex flex-col"
-                                        >
-                                            <div className="relative overflow-hidden aspect-video">
-                                                <img
-                                                    src={video.thumbnail}
-                                                    alt={video.title}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                                />
-                                            </div>
-                                            <div className="p-6 flex flex-col flex-grow">
-                                                <h2 className="text-xl font-bold text-slate-100 mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
-                                                    {video.title}
-                                                </h2>
-                                                <p className="text-slate-400 text-sm mb-4 flex-grow line-clamp-1">{video.channelTitle}</p>
-                                                <div className="mt-auto text-xs text-slate-500">
-                                                    {new Date(video.publishedAt).toLocaleDateString('ru-RU')}
+                                <AnimatePresence>
+                                    {filteredVideos.map((video) => (
+                                        <motion.div variants={item} key={video.id} exit="exit" layout>
+                                            <button
+                                                onClick={() => setSelectedVideo(video)}
+                                                className="group w-full text-left bg-white/5 rounded-lg overflow-hidden shadow-lg border border-white/10 hover:border-cyan-400/50 hover:shadow-cyan-400/10 transition-all duration-300 h-full flex flex-col"
+                                            >
+                                                <div className="relative overflow-hidden aspect-video">
+                                                    <img
+                                                        src={video.thumbnail}
+                                                        alt={video.title}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                    />
                                                 </div>
-                                            </div>
-                                        </button>
-                                    </motion.div>
-                                ))}
+                                                <div className="p-6 flex flex-col flex-grow">
+                                                    <h2 className="text-xl font-bold text-slate-100 mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
+                                                        {video.title}
+                                                    </h2>
+                                                    <p className="text-slate-400 text-sm mb-4 flex-grow line-clamp-1">{video.channelTitle}</p>
+                                                    <div className="mt-auto text-xs text-slate-500">
+                                                        {new Date(video.publishedAt).toLocaleDateString('ru-RU')}
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
+                                {filteredVideos.length === 0 && (
+                                    <div className="col-span-full text-center text-slate-400 py-16">
+                                        {search ? 'Видео не найдено' : 'Видео пока нет'}
+                                    </div>
+                                )}
                             </motion.div>
                         )}
                     </div>

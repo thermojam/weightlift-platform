@@ -1,7 +1,6 @@
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import {Navbar} from '@/widgets/NavBar';
-import {Footer} from '@/widgets/Footer';
 import {
     Home,
     AuthPage,
@@ -50,7 +49,6 @@ export const App: React.FC = () => {
                     </Routes>
                 </div>
             </main>
-            <Footer/>
         </div>
     );
 };
