@@ -117,7 +117,7 @@ export const PostForm: React.FC = () => {
                         id="title"
                         type="text"
                         {...register('title')}
-                        className="w-full bg-slate-700 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-cyan-900 text-slate-100 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     {errors.title && (
                         <p className="text-red-400 text-sm mt-1">{errors.title.message}</p>
@@ -129,7 +129,7 @@ export const PostForm: React.FC = () => {
                         id="imageUrl"
                         type="text"
                         {...register('imageUrl')}
-                        className="w-full bg-slate-700 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-cyan-900 text-slate-100 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     {errors.imageUrl && (
                         <p className="text-red-400 text-sm mt-1">{errors.imageUrl.message}</p>
@@ -140,7 +140,7 @@ export const PostForm: React.FC = () => {
                     <textarea
                         id="content"
                         {...register('content')}
-                        className="w-full bg-slate-700 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full bg-cyan-900 text-slate-100 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows={10}
                     />
                     {errors.content && (

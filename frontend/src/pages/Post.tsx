@@ -48,7 +48,7 @@ export const Post: React.FC = () => {
 
                     {/* Post Header */}
                     <div className="mb-8">
-                        <h1 className="text-4xl md:text-5xl lg:text-4xl font-bold text-[#00aaff] mb-8 text-center">
+                        <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-[#00aaff] mb-8 text-center">
                             {post.title}
                         </h1>
                         <div className="flex flex-wrap justify-between items-center gap-x-6 gap-y-2 text-slate-400">

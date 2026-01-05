@@ -48,7 +48,7 @@ export const Videos: React.FC = () => {
                             placeholder="Поиск по видео..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 rounded-lg text-slate-100 placeholder-slate-400 bg-white/5 border border-white/20 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
+                            className="w-full pl-12 pr-4 py-3 rounded-full text-slate-100 placeholder-slate-400 bg-white/5 border border-white/20 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
                         />
                     </div>
                 </div>
