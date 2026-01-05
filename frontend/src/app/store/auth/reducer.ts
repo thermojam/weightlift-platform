@@ -3,7 +3,7 @@ import {AUTH_ACTION_TYPES} from './types';
 
 const initialState: AuthState = {
     user: null,
-    isLoading: true,
+    isLoading: false,
     error: null,
 };
 
