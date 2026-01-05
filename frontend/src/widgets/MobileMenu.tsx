@@ -4,7 +4,7 @@ import { FaTimes, FaUserCircle, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { IUser } from '@/entities/User/model/types';
 import { LogoutButton } from '@/features/auth/logout/ui/LogoutButton';
-import Logo from '@/assets/images/logo.svg';
+import Logo from '../../public/logo.svg';
 
 interface MobileMenuProps {
     isOpen: boolean;

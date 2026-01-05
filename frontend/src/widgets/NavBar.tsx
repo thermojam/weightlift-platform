@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaUserCircle, FaArrowLeft, FaBars } from 'react-icons/fa';
 import type { RootState } from '@/app/store';
-import Logo from '@/assets/images/logo.svg'
+import Logo from '../../public/logo.svg'
 import { LogoutButton } from '@/features/auth/logout/ui/LogoutButton';
 import { MobileMenu } from './MobileMenu';
 
