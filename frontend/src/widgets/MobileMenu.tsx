@@ -15,7 +15,7 @@ interface MobileMenuProps {
 export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, user }) => {
     const navigate = useNavigate();
     const navLinkClasses = ({isActive}: { isActive: boolean }) =>
-        `relative text-slate-100 text-4xl font-bold py-4 text-center inline-block transition-colors duration-300 hover:text-slate-300 group ` +
+        `relative text-slate-100 text-2xl font-bold py-2 text-center inline-block transition-colors duration-300 hover:text-slate-300 group ` +
         `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-slate-300 after:rounded-full after:transition-transform after:duration-300 ` +
         (isActive ? 'text-slate-300 after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100');
 
@@ -50,7 +50,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, user })
                         </div>
 
                         <nav className="flex flex-col gap-8 text-center w-full px-4">
-                            <div className="flex flex-col items-center gap-4"> {/* Centering the links */}
+                            <div className="flex flex-col items-center gap-4">
                                 <NavLink to="/" className={navLinkClasses} onClick={onClose}>Главная</NavLink>
                                 <NavLink to="/posts" className={navLinkClasses} onClick={onClose}>Статьи</NavLink>
                                 <NavLink to="/videos" className={navLinkClasses} onClick={onClose}>Видео</NavLink>

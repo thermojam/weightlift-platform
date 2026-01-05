@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
                         <div className="h-full grid grid-cols-1 md:grid-cols-2 items-center">
 
                             <div className="md:h-full flex flex-col justify-center text-center md:text-left py-8 md:py-0 z-10">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent">
+                                <h1 className="custom-title text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent">
                                     Объединение научного подхода с авторским опытом в твоих руках
                                 </h1>
                                 <p className="text-lg sm:text-xl text-gray-300 my-6 md:my-8 max-w-xl mx-auto md:mx-0">

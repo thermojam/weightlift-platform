@@ -50,15 +50,15 @@ export const TonnageForm: FC = () => {
 
     return (
         <div
-            className="lg:col-span-2 bg-slate-800 p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
+            className="lg:col-span-2 bg-slate-800 p-4 sm:p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
             <h2 className="text-2xl font-bold text-[#00aaff] mb-4">Дневные показатели</h2>
             <div className="space-y-4">
                 {exercises.map(ex => (
                     <div key={ex.name}>
-                        <label htmlFor={ex.name} className="block text-sm font-medium text-slate-300">{ex.label}</label>
-                        <div className="mt-1 flex gap-x-1">
+                        <label htmlFor={ex.name} className="block text-sm font-medium text-slate-300 mb-1">{ex.label}</label>
+                        <div className="grid grid-cols-[1fr_auto] gap-x-2">
                             <Input
-                                className=" [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                className="w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                 variant="form"
                                 type="number"
                                 id={ex.name}

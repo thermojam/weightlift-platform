@@ -8,7 +8,7 @@ export const ProgressSection: FC = () => {
 
     return (
         <div
-            className="lg:col-span-3 bg-slate-800 p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
+            className="lg:col-span-3 bg-slate-800 p-4 sm:p-6 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
             <h2 className="text-2xl font-bold text-[#00aaff] mb-4">График прогресса</h2>
             {diaryEntries.length > 0 ? (
                 <ProgressChart data={diaryEntries}/>

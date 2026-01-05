@@ -38,7 +38,7 @@ export const LoginForm: React.FC = () => {
     };
 
     return (
-        <div className="w-[500px]">
+        <div className="w-[450px] px-4">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-[#1c202a]/50 backdrop-blur-sm rounded-3xl p-8 border border-[#00aaff]/90 shadow-2xl shadow-[#00aaff]/20"

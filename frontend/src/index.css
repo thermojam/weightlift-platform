@@ -12,13 +12,13 @@
     background: linear-gradient(90deg, #1d63ed 0%, #002a8c 100%);
 }
 
-.hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+@font-face {
+    font-family: "ForestSmooth", sans-serif;
+    src: url("./assets/fonts/ForestSmooth.ttf") format("ttf");
 }
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
+@font-face {
+    font-family: "Nunito", sans-serif;
+    src: url("./assets/fonts/Nunito.ttf") format("ttf");
 }
 
 @layer base {
@@ -38,6 +38,11 @@
 }
 
 @layer utilities {
+    .custom-title {
+        font-family: "ForestSmooth", sans-serif;
+        line-height: 120%;
+    }
+
     .neu-input {
         background: #24272c;
         box-shadow:
@@ -53,14 +58,5 @@
         );
         border: 1px solid rgba(255, 255, 255, 0.68);
     }
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-    animation: marquee 30s linear infinite;
 }
 

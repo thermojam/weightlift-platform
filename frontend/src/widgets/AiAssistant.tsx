@@ -1,6 +1,7 @@
 import {useState} from "react";
 import type {FC, FormEvent, ChangeEvent} from "react";
 import {useSelector} from "react-redux";
+import { FaPaperPlane } from 'react-icons/fa';
 import type {RootState} from "@/app/store";
 import {getAiResponse} from "@/shared/api";
 import {usePosts} from "@/entities/Post/lib/usePosts";
@@ -112,12 +113,12 @@ ${formattedDiaryData}
 
     return (
         <div
-            className="lg:col-span-5 bg-slate-800 p-6 rounded-lg shadow-lg mt-8 border border-[#00aaff]/90 shadow-[#00aaff]/20">
+            className="lg:col-span-5 bg-slate-800 p-4 sm:p-4 rounded-lg shadow-lg border border-[#00aaff]/90 shadow-[#00aaff]/20">
             <h2 className="text-2xl font-bold text-[#00aaff] mb-4">
                 Ассистент
             </h2>
-            <div className="h-96  bg-slate-900/50 rounded-lg p-8 flex flex-col">
-                <div className="flex-grow overflow-y-auto mb-4 space-y-4">
+            <div className="h-80 bg-slate-900/50 rounded-lg p-4 flex flex-col">
+                <div className="flex-grow overflow-y-auto mb-4 space-y-4 pr-2">
                     {chatHistory.length === 0 ? (
                         <p className="text-slate-400">{welcomeMessage}</p>
                     ) : (
@@ -150,7 +151,7 @@ ${formattedDiaryData}
                         </div>
                     )}
                 </div>
-                <form onSubmit={handleAiSubmit} className="mt-auto flex gap-2">
+                <form onSubmit={handleAiSubmit} className="mt-auto grid grid-cols-[1fr_auto] gap-2 items-center">
                     <Input
                         variant="form"
                         type="text"
@@ -158,13 +159,22 @@ ${formattedDiaryData}
                         onChange={handleAiMessageChange}
                         placeholder="Спроси совета у тренера..."
                         disabled={isLoading}
+                        className="h-10 sm:h-auto"
                     />
                     <Button
                         type="submit"
                         variant="outline"
                         disabled={isLoading}
+                        className="w-10 h-10 p-3 rounded-full flex items-center justify-center sm:w-auto sm:h-auto sm:px-6"
                     >
-                        {isLoading ? "..." : "Отправить"}
+                        {isLoading ? (
+                            "..."
+                        ) : (
+                            <>
+                                <span className="hidden sm:inline">Отправить</span>
+                                <span className="sm:hidden"><FaPaperPlane /></span>
+                            </>
+                        )}
                     </Button>
                 </form>
             </div>
