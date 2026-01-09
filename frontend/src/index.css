@@ -8,24 +8,30 @@
     background: linear-gradient(269deg, #000 7.91%, #212224 100%);
 }
 
-/*.footer-gradient {*/
-/*    background: #2D404E;*/
-/*}*/
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 
 @font-face {
     font-family: "ForestSmooth";
     src: url("../public/fonts/ForestSmooth.ttf") format("truetype");
 }
+
 @font-face {
-    font-family: "Nunito";
-    src: url("../public/fonts/Nunito.ttf") format("truetype");
+    font-family: "Comfortaa";
+    src: url("../public/fonts/Comfortaa.ttf") format("truetype");
 }
 
 @layer base {
     html, body {
         height: 100%;
         overflow: hidden;
-        font-family: Nunito, sans-serif;
+        font-family: Comfortaa, sans-serif;
     }
 
     #root {

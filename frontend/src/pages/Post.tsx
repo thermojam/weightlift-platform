@@ -42,13 +42,11 @@ export const Post: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            {/* Scrollable content area */}
             <div className="flex-1 overflow-y-auto hide-scrollbar">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
 
-                    {/* Post Header */}
                     <div className="mb-8">
-                        <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-[#00aaff] mb-8 text-center">
+                        <h1 className="custom-title text-3xl md:text-3xl lg:text-4xl font-bold text-[#00aaff] mb-8 text-center">
                             {post.title}
                         </h1>
                         <div className="flex flex-wrap justify-between items-center gap-x-6 gap-y-2 text-slate-400">
@@ -78,18 +76,15 @@ export const Post: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Post Image */}
                     <div className="relative aspect-video w-full max-w-5xl mx-auto mb-8 shadow-2xl shadow-black/30 rounded-lg overflow-hidden">
                         <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover"/>
                     </div>
 
-                    {/* Post Content */}
                     <div
                         className="prose prose-lg lg:prose-xl prose-invert max-w-4xl mx-auto text-slate-300 prose-headings:text-slate-100 prose-strong:text-slate-100 prose-a:text-cyan-400 hover:prose-a:text-cyan-300"
                         dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(post.content)}}
                     />
 
-                    {/* Comments Section */}
                     <div className="max-w-4xl mx-auto mt-12">
                         <div className="w-full h-px bg-slate-700 mb-8"></div>
                         <Comments comments={post.comments} postId={post.id}/>
@@ -97,7 +92,6 @@ export const Post: React.FC = () => {
                 </div>
             </div>
 
-            {/* Modal and Toast stay outside the scrollable area */}
             <Modal
                 isOpen={confirmOpen}
                 title="Удаление статьи"

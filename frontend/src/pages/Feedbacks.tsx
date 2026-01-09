@@ -41,7 +41,7 @@ export const Feedbacks: React.FC = () => {
                     </div>
                 ) : (
                     <>
-                        {/* Desktop Headers */}
+
                         <div className="hidden lg:grid grid-cols-6 gap-2 px-2 text-[#00aaff] font-semibold text-sm">
                             <div>Имя</div>
                             <div>Телефон</div>

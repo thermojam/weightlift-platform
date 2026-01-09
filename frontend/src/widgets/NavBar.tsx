@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { FaUserCircle, FaArrowLeft, FaBars } from 'react-icons/fa';
+import { FaUserCircle, FaArrowLeft, FaAlignRight } from 'react-icons/fa';
 import type { RootState } from '@/app/store';
-import Logo from '../../public/logo.svg'
+import Logo from '../../public/images/logo.svg'
 import { LogoutButton } from '@/features/auth/logout/ui/LogoutButton';
 import { MobileMenu } from './MobileMenu';
 
@@ -28,7 +28,6 @@ export const Navbar: React.FC = () => {
                         <img src={Logo} alt="Logo" className="h-20 w-auto"/>
                     </NavLink>
 
-                    {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8 lg:gap-12">
                         <NavLink to="/" className={navLinkClasses}>Главная</NavLink>
                         <NavLink to="/posts" className={navLinkClasses}>Статьи</NavLink>
@@ -37,7 +36,6 @@ export const Navbar: React.FC = () => {
                         <NavLink to="/form" className={navLinkClasses}>Форма</NavLink>
                     </div>
 
-                    {/* Desktop User Section */}
                     <div className="hidden md:flex items-center gap-5 text-white">
                         {!user ? (
                             <NavLink to="/auth/login" title="Войти" className="hover:text-slate-300 transition-colors">
@@ -60,10 +58,9 @@ export const Navbar: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Mobile Burger Menu */}
                     <div className="md:hidden flex items-center">
                         <button onClick={() => setMobileMenuOpen(true)} className="text-white">
-                            <FaBars size={28} />
+                            <FaAlignRight size={28}/>
                         </button>
                     </div>
                 </nav>

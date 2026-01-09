@@ -69,7 +69,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({postId}) => {
                         variant="outline"
                         size="sm"
                     >
-                        Зарегистрироваться
+                        Регистрация
                     </Button>
                 </div>
             </div>

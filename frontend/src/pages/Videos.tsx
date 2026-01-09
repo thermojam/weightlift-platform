@@ -35,9 +35,8 @@ export const Videos: React.FC = () => {
     return (
         <>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 h-full flex flex-col">
-                {/* Header: Title and Search */}
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-6">
-                    <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent text-center sm:text-left">
+                    <h1 className="custom-title text-4xl sm:text-5xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent text-center sm:text-left">
                         Видео
                     </h1>
                     <div className="relative w-full max-w-md">
@@ -54,7 +53,6 @@ export const Videos: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Content: List of Videos */}
                 <div className="flex-1 overflow-y-auto hide-scrollbar -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="px-4 sm:px-6 lg:px-8">
                         {isLoading ? (
@@ -108,7 +106,6 @@ export const Videos: React.FC = () => {
                 </div>
             </div>
 
-            {/* Modal */}
             {selectedVideo && (
                 <div
                     className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"

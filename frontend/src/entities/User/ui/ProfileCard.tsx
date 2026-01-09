@@ -11,7 +11,7 @@ export type Member = {
 
 interface ProfileCardProps {
     member: Member;
-    index: number; // index is kept for key purposes, but animation is handled by parent
+    index: number;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({member}) => {

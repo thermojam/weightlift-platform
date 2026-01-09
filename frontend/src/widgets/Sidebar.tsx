@@ -25,7 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, onCloseMobile })
 
     return (
         <aside
-            className={`bg-slate-800/50 backdrop-blur-lg md:bg-transparent flex flex-col gap-4 border-r-0 transition-transform duration-300 fixed md:relative h-full z-40 md:z-auto left-0 top-0 transform ${isMobileOpen ? 'translate-x-0 w-full p-6' : '-translate-x-full'} md:translate-x-0 md:w-24 md:p-4`}>
+            className={`bg-slate-800/50 backdrop-blur-lg md:bg-transparent flex flex-col gap-4 transition-transform duration-300 fixed md:relative h-full z-40 md:z-auto left-0 top-0 transform ${isMobileOpen ? 'translate-x-0 w-full p-6' : '-translate-x-full'} md:translate-x-0 md:w-24 md:p-4`}>
             <div className="flex items-center justify-end md:justify-center">
                 <button
                     onClick={onCloseMobile}

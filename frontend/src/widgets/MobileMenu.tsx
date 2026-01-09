@@ -4,7 +4,7 @@ import { FaTimes, FaUserCircle, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { IUser } from '@/entities/User/model/types';
 import { LogoutButton } from '@/features/auth/logout/ui/LogoutButton';
-import Logo from '../../public/logo.svg';
+import Logo from '../../public/images/logo.svg';
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -15,9 +15,10 @@ interface MobileMenuProps {
 export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, user }) => {
     const navigate = useNavigate();
     const navLinkClasses = ({isActive}: { isActive: boolean }) =>
-        `relative text-slate-100 text-2xl font-bold py-2 text-center inline-block transition-colors duration-300 hover:text-slate-300 group ` +
-        `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-slate-300 after:rounded-full after:transition-transform after:duration-300 ` +
-        (isActive ? 'text-slate-300 after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100');
+        'text-2xl font-bold py-3 px-8 rounded-full transition-all duration-300 inline-block ' +
+        (isActive
+            ? 'bg-cyan-900 text-slate-100'
+            : 'text-slate-300 hover:bg-white/10 hover:text-slate-100');
 
     return (
         <AnimatePresence>
@@ -34,7 +35,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, user })
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="relative h-full w-full bg-black/50 backdrop-blur-xl flex flex-col items-center justify-center"
+                        className="relative h-full w-full bg-slate-800/50 backdrop-blur-lg md:bg-transparent flex flex-col items-center justify-center"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="absolute top-0 left-4">

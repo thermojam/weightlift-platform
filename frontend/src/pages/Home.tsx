@@ -10,7 +10,7 @@ import {
     FaBookOpen,
     FaRunning
 } from "react-icons/fa";
-import mainImage from '@/assets/images/coach.png';
+import mainImage from '../../public/images/coach.png';
 
 export const Home: React.FC = () => {
     const marqueeItems = [
@@ -23,10 +23,10 @@ export const Home: React.FC = () => {
     ];
 
     return (
-        <div className="h-full w-full flex flex-col">
+        <div className="h-full w-full flex flex-col overflow-y-auto hide-scrollbar">
 
-            <div className="flex-grow overflow-y-auto hide-scrollbar">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full mt-8"> {/* Added h-full */}
+            <div className="flex-grow">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full mt-8">
                     <div className="relative h-full">
 
                         <div className="h-full grid grid-cols-1 md:grid-cols-2 items-center">
@@ -35,7 +35,7 @@ export const Home: React.FC = () => {
                                 <h1 className="custom-title text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent">
                                     Объединение научного подхода с авторским опытом в твоих руках
                                 </h1>
-                                <p className="text-lg sm:text-xl text-gray-300 my-6 md:my-8 max-w-xl mx-auto md:mx-0">
+                                <p className="custom-description text-lg sm:text-xl text-gray-300 my-6 md:my-8 max-w-xl mx-auto md:mx-0">
                                     Приложение предлагает уникальное сочетание научных данных, авторских методик и живого комьюнити. Здесь ты найдёшь всё необходимое для роста, мотивации и обмена опытом с единомышленниками.
                                 </p>
                                 <Link to="/auth" className="self-center md:self-start">

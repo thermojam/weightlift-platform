@@ -34,10 +34,10 @@ export const Form: React.FC = () => {
                             transition={{ duration: 0.5 }}
                             className="text-center mb-10 pt-4"
                         >
-                            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent mb-6">
+                            <h1 className="custom-title text-4xl sm:text-5xl font-bold bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 bg-clip-text text-transparent mb-6">
                                 Тренируйся с лучшими
                             </h1>
-                            <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+                            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                                 Заполните форму, и мы разработаем для вас индивидуальный тренировочный план, основанный на
                                 научных данных и проверенных авторских методиках.
                             </p>

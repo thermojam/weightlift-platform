@@ -37,7 +37,7 @@ export const Users: React.FC = () => {
             <h1 className="text-2xl sm:text-4xl font-bold text-slate-100 mb-6 sm:mb-8 text-center">Все пользователи</h1>
 
             <div className="space-y-4 max-w-6xl mx-auto px-2 sm:px-0">
-                {/* Desktop Headers */}
+
                 <div className="hidden md:grid grid-cols-5 gap-4 px-4 text-[#00aaff] font-semibold">
                     <div>Имя</div>
                     <div>Дата регистрации</div>
@@ -54,7 +54,6 @@ export const Users: React.FC = () => {
                             key={user.id}
                             className="p-4 rounded-lg bg-cyan-950 md:grid md:grid-cols-5 md:gap-4 md:items-center"
                         >
-                            {/* Mobile & Desktop Content */}
                             <div className="flex justify-between items-center md:block">
                                 <span className="md:hidden text-[#00aaff] font-semibold">Имя</span>
                                 <div className="text-slate-100 font-medium text-right md:text-left">{user.login}</div>

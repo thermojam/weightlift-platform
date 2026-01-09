@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar } from '@/widgets/Sidebar';
-import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
+import { FaDashcube } from 'react-icons/fa';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
@@ -14,7 +14,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
     };
 
     return (
-        <div className="flex min-h-[calc(100vh-160px)] bg-slate-900">
+        <div className="flex min-h-full bg-slate-900">
             <Sidebar
                 isMobileOpen={isMobileMenuOpen}
                 onCloseMobile={toggleMobileMenu}
@@ -25,12 +25,12 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     onClick={toggleMobileMenu}
                 />
             )}
-            <main className="flex-1 p-4 md:p-8 w-full overflow-auto">
+            <main className="flex-1 p-8 md:p-8 w-full overflow-auto">
                 <button
                     className="text-slate-100 hover:text-slate-300 md:hidden mb-4"
                     onClick={toggleMobileMenu}
                 >
-                    <FaRegArrowAltCircleLeft size={24} />
+                    <FaDashcube size={24} />
                 </button>
                 {children}
             </main>
